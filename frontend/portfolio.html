@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <meta name="description" content="Developer portfolio — projects, skills, and experience.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23f43f5e'/%3E%3Cpath d='M16 6l8 10-8 10-8-10z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#work">Skip to content</a>
+
+  <!-- Ambient background -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+  </div>
+
+  <!-- Loading skeleton -->
+  <div class="loading" id="loading" role="status" aria-label="Loading portfolio">
+    <div class="loading-mark"></div>
+    <p>Loading portfolio…</p>
+  </div>
+
+  <!-- Error / empty state -->
+  <div class="notfound hidden" id="notFound">
+    <div class="notfound-code">404</div>
+    <h1>Portfolio not found</h1>
+    <p>This link doesn't point to a published portfolio — it may have been removed or renamed.</p>
+    <a href="index.html" class="cta-btn"><span>Create your own portfolio</span></a>
+  </div>
+
+  <!-- ===== SITE ===== -->
+  <div class="site hidden" id="site">
+
+    <!-- Scroll progress -->
+    <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-fill" id="scrollProgress"></div></div>
+
+    <!-- Nav -->
+    <header class="nav" id="nav">
+      <a class="nav-mark" href="#top" id="navMark">·</a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#about" data-sec="about">About</a>
+        <a href="#work" data-sec="work">Work</a>
+        <a href="#experience" data-sec="experience">Experience</a>
+        <a href="#contact" data-sec="contact">Contact</a>
+      </nav>
+      <a class="nav-cta" id="navCta" href="#contact">Get in touch</a>
+    </header>
+
+    <main id="top">
+
+      <!-- ===== HERO ===== -->
+      <section class="hero" aria-label="Introduction">
+        <div class="hero-watermark" id="heroWatermark" aria-hidden="true">◈</div>
+        <div class="hero-inner">
+          <p class="hero-eyebrow reveal" id="heroEyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span id="heroAvail">Available for opportunities</span>
+          </p>
+          <h1 class="hero-name" id="heroName" aria-live="polite"></h1>
+          <p class="hero-role reveal" id="heroRole"></p>
+          <p class="hero-tag reveal" id="heroTag"></p>
+          <div class="hero-actions reveal">
+            <a class="cta-btn" id="heroContactBtn" href="#contact"><span>Let's work together</span></a>
+            <a class="ghost-btn hidden" id="heroGithubBtn" href="#" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="ghost-btn hidden" id="heroLinkedinBtn" href="#" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          </div>
+          <p class="hero-loc reveal hidden" id="heroLoc"></p>
+        </div>
+        <a class="hero-scroll" href="#about" aria-label="Scroll to about section">
+          <span class="hero-scroll-line" aria-hidden="true"></span> scroll
+        </a>
+      </section>
+
+      <!-- ===== SKILLS MARQUEE ===== -->
+      <div class="marquee hidden" id="marquee" aria-hidden="true">
+        <div class="marquee-track" id="marqueeTrack"></div>
+      </div>
+
+      <!-- ===== ABOUT ===== -->
+      <section class="sec hidden" id="about" aria-labelledby="aboutTitle">
+        <div class="sec-head reveal">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title" id="aboutTitle">About</h2>
+        </div>
+        <div class="about-grid">
+          <blockquote class="about-quote reveal" id="aboutText"></blockquote>
+          <div class="about-side reveal">
+            <div class="about-facts" id="aboutFacts"></div>
+            <div class="skill-groups" id="skillGroups"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== WORK ===== -->
+      <section class="sec hidden" id="work" aria-labelledby="workTitle">
+        <div class="sec-head reveal">
+          <span class="sec-num">02</span>
+          <h2 class="sec-title" id="workTitle">Selected Work</h2>
+        </div>
+        <div class="work-list" id="workList"></div>
+      </section>
+
+      <!-- ===== EXPERIENCE ===== -->
+      <section class="sec hidden" id="experience" aria-labelledby="expTitle">
+        <div class="sec-head reveal">
+          <span class="sec-num">03</span>
+          <h2 class="sec-title" id="expTitle">Experience</h2>
+        </div>
+        <ol class="timeline" id="timeline"></ol>
+      </section>
+
+      <!-- ===== EDUCATION & CERTS ===== -->
+      <section class="sec hidden" id="education" aria-labelledby="eduTitle">
+        <div class="sec-head reveal">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title" id="eduTitle">Education &amp; Credentials</h2>
+        </div>
+        <div class="edu-grid" id="eduGrid"></div>
+      </section>
+
+      <!-- ===== CONTACT ===== -->
+      <section class="sec contact hidden" id="contact" aria-labelledby="contactTitle">
+        <div class="sec-head reveal">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title" id="contactTitle">Contact</h2>
+        </div>
+        <p class="contact-big reveal">Have a project in mind?<br><em id="contactLine">Let's build something great.</em></p>
+        <div class="contact-grid">
+          <form class="contact-form reveal" id="contactForm" novalidate>
+            <label class="cf-field">
+              <span>Your name</span>
+              <input type="text" id="cfName" autocomplete="name" required>
+            </label>
+            <label class="cf-field">
+              <span>Your email</span>
+              <input type="email" id="cfEmail" autocomplete="email" required>
+            </label>
+            <label class="cf-field">
+              <span>Message</span>
+              <textarea id="cfMessage" rows="4" required></textarea>
+            </label>
+            <button type="submit" class="cta-btn"><span>Send message</span></button>
+            <p class="cf-note">Opens your email app with the message pre-filled.</p>
+          </form>
+          <div class="contact-actions reveal" id="contactActions"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="foot">
+      <span id="footName"></span>
+      <span class="foot-dim">Built with <a href="index.html">Instant Portfolio</a></span>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/enhance.js"></script>
+  <script src="js/portfolio.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Instant Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .legal-page{padding:160px 0 100px}
+    .legal-header{text-align:center;margin-bottom:72px}
+    .legal-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.2);
+      border-radius:50px;padding:8px 20px;font-size:0.813rem;font-weight:500;
+      color:var(--accent);margin-bottom:24px;
+    }
+    .legal-title{
+      font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);
+      font-weight:800;color:var(--text-bright);letter-spacing:-0.03em;margin-bottom:16px;
+    }
+    .legal-meta{color:var(--text-dim);font-size:0.9rem}
+    .legal-meta strong{color:var(--accent)}
+    .legal-body{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+    .legal-section h2{
+      font-family:var(--font-display);font-size:1.25rem;font-weight:700;
+      color:var(--text-bright);margin-bottom:16px;padding-bottom:12px;
+      border-bottom:1px solid var(--border);letter-spacing:-0.01em;
+    }
+    .legal-section h2 span{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:28px;height:28px;border-radius:50%;background:rgba(244,63,94,0.1);
+      color:var(--accent);font-size:0.813rem;margin-right:10px;flex-shrink:0;
+    }
+    .legal-section p{color:var(--text-dim);font-size:0.938rem;line-height:1.85;margin-bottom:12px}
+    .legal-section ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+    .legal-section ul li{
+      display:flex;align-items:flex-start;gap:10px;
+      color:var(--text-dim);font-size:0.938rem;line-height:1.7;
+    }
+    .legal-section ul li::before{
+      content:'';width:6px;height:6px;border-radius:50%;
+      background:var(--accent);flex-shrink:0;margin-top:9px;
+    }
+    .legal-section a{color:var(--accent);font-weight:500;text-decoration:underline;text-underline-offset:2px}
+    .legal-highlight{
+      background:rgba(244,63,94,0.05);border:1px solid rgba(244,63,94,0.15);
+      border-radius:var(--radius-sm);padding:20px 24px;margin-top:12px;
+    }
+    .legal-highlight p{margin-bottom:0;color:var(--text)}
+    .data-table{
+      width:100%;border-collapse:collapse;margin-top:12px;font-size:0.875rem;
+    }
+    .data-table th{
+      background:rgba(244,63,94,0.06);color:var(--text-bright);font-weight:600;
+      padding:12px 16px;text-align:left;border:1px solid var(--border);font-size:0.8rem;
+      letter-spacing:0.05em;text-transform:uppercase;
+    }
+    .data-table td{
+      padding:12px 16px;border:1px solid var(--border);color:var(--text-dim);
+      vertical-align:top;line-height:1.6;
+    }
+    .data-table tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+    .legal-nav-links{
+      display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:56px;
+      padding-top:40px;border-top:1px solid var(--border);
+    }
+    .legal-nav-links a{
+      display:inline-flex;align-items:center;gap:6px;font-size:0.838rem;font-weight:500;
+      color:var(--text-dim);padding:8px 18px;border:1px solid var(--border);
+      border-radius:50px;transition:var(--transition);
+    }
+    .legal-nav-links a:hover{color:var(--accent);border-color:rgba(244,63,94,0.4)}
+    .legal-nav-links a.current{color:var(--accent);border-color:rgba(244,63,94,0.4);background:rgba(244,63,94,0.06)}
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">&#9670;</span>
+        <span>Instant<span class="logo-accent">Portfolio</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+        <li class="nav-mobile-auth"><a href="login.html">Log In</a></li>
+        <li class="nav-mobile-auth"><a href="signup.html" class="nav-signup-link">Sign Up Free</a></li>
+      </ul>
+      <div class="nav-auth">
+        <a href="login.html" class="btn btn-ghost btn-nav">Log In</a>
+        <a href="signup.html" class="btn btn-primary btn-nav">Sign Up Free</a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="legal-page">
+    <div class="container">
+
+      <div class="legal-header">
+        <div class="legal-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Legal
+        </div>
+        <h1 class="legal-title">Privacy Policy</h1>
+        <p class="legal-meta">Last updated: <strong>24 June 2026</strong> &nbsp;·&nbsp; Effective: <strong>24 June 2026</strong></p>
+      </div>
+
+      <div class="legal-body">
+
+        <div class="legal-section">
+          <h2><span>1</span>Who We Are</h2>
+          <p>Instant Portfolio ("we", "us", "our") operates the website and service at instantportfolio.com. We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains what data we collect, why we collect it, and how you can exercise your rights.</p>
+          <p>For questions or concerns, contact our Privacy Team at <a href="mailto:privacy@instantportfolio.com">privacy@instantportfolio.com</a>.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2><span>2</span>What Information We Collect</h2>
+          <p>We collect information in the following ways:</p>
+
+          <table class="data-table">
+            <thead>
+              <tr><th>Category</th><th>Examples</th><th>Purpose</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Resume Content</strong></td>
+                <td>Name, email, phone, work history, skills, education, projects</td>
+                <td>Generate your portfolio page</td>
+              </tr>
+              <tr>
+                <td><strong>Account Data</strong></td>
+                <td>Email address, password (hashed), account preferences</td>
+                <td>Authentication and account management</td>
+              </tr>
+              <tr>
+                <td><strong>Usage Data</strong></td>
+                <td>Pages visited, features used, time on site</td>
+                <td>Service improvement and analytics</td>
+              </tr>
+              <tr>
+                <td><strong>Technical Data</strong></td>
+                <td>IP address, browser type, device type, cookies</td>
+                <td>Security, fraud prevention, performance</td>
+              </tr>
+              <tr>
+                <td><strong>Payment Data</strong></td>
+                <td>Billing address, last 4 digits of card (via Stripe)</td>
+                <td>Processing subscriptions</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="legal-section">
+          <h2><span>3</span>How We Use Your Information</h2>
+          <p>We use your personal data only for the following lawful purposes:</p>
+          <ul>
+            <li>To provide, operate, and maintain the Service</li>
+            <li>To generate your portfolio from your uploaded resume</li>
+            <li>To communicate with you about your account and our updates</li>
+            <li>To process payments and manage subscriptions</li>
+            <li>To detect, prevent, and address fraud or security issues</li>
+            <li>To comply with legal obligations</li>
+            <li>To improve and personalise the Service (anonymised analytics only)</li>
+          </ul>
+          <div class="legal-highlight">
+            <p>We will never sell, rent, or trade your personal data to third parties for marketing purposes.</p>
+          </div>
+        </div>
+
+        <div class="legal-section">
+          <h2><span>4</span>Sharing Your Information</h2>
+          <p>We may share your data with trusted third parties only where necessary:</p>
+          <ul>
+            <li><strong>Service Providers:</strong> Cloud hosting (AWS/GCP), payment processing (Stripe), analytics (privacy-first, anonymised)</li>
+            <li><strong>Legal Requirements:</strong> When required by law, regulation, or valid legal process</li>
+            <li><strong>Business Transfer:</strong> In connection with a merger or acquisition (you will be notified)</li>
+          </ul>
+          <p>All third-party processors are bound by data processing agreements and must adhere to applicable data protection standards.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2><span>5</span>Cookies</h2>
+          <p>We use cookies and similar tracking technologies to enhance your experience. Types of cookies we use:</p>
+          <ul>
+            <li><strong>Essential cookies:</strong> Required for the Service to function (session, authentication)</li>
+            <li><strong>Analytics cookies:</strong> Help us understand how users interact with the site (anonymised)</li>
+            <li><strong>Preference cookies:</strong> Remember your settings and choices</li>
+          </ul>
+          <p>You can control cookies via your browser settings. Disabling essential cookies may affect Service functionality.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2><span>6</span>Data Retention</h2>
+          <p>We retain your personal data only as long as necessary to fulfil the purposes outlined in this policy:</p>
+          <ul>
+            <li>Resume files are deleted from our processing servers within 24 hours of portfolio generation</li>
+            <li>Portfolio content is retained while your account is active</li>
+            <li>Account data is deleted within 30 days of account deletion request</li>
+            <li>Anonymised analytics data may be retained indefinitely</li>
+            <li>Legal and financial records are retained for the period required by applicable law</li>
+          </ul>
+        </div>
+
+        <div class="legal-section">
+          <h2><span>7</span>Data Security</h2>
+          <p>We implement industry-standard security measures to protect your data:</p>
+          <ul>
+            <li>TLS encryption for all data in transit</li>
+            <li>AES-256 encryption for data at rest</li>
+            <li>Regular security audits and penetration testing</li>
+            <li>Strict access controls — only authorised personnel can access your data</li>
+            <li>Bcrypt hashing for all passwords</li>
+          </ul>
+          <p>Despite these measures, no internet transmission is 100% secure. Please protect your account password.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2><span>8</span>Your Rights</h2>
+          <p>Depending on your jurisdiction, you may have the following rights regarding your personal data:</p>
+          <ul>
+            <li><strong>Access:</strong> Request a copy of the data we hold about you</li>
+            <li><strong>Rectification:</strong> Correct inaccurate or incomplete data</li>
+            <li><strong>Erasure:</strong> Request deletion of your personal data ("right to be forgotten")</li>
+            <li><strong>Restriction:</strong> Request that we limit how we process your data</li>
+            <li><strong>Portability:</strong> Receive your data in a structured, machine-readable format</li>
+            <li><strong>Objection:</strong> Object to processing based on legitimate interests</li>
+            <li><strong>Withdraw Consent:</strong> Where processing is based on consent, withdraw it at any time</li>
+          </ul>
+          <p>To exercise any of these rights, email <a href="mailto:privacy@instantportfolio.com">privacy@instantportfolio.com</a>. We will respond within 30 days.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2><span>9</span>Children's Privacy</h2>
+          <p>The Service is not intended for users under 16 years of age. We do not knowingly collect personal data from children. If you believe a child has provided us with personal data, contact us immediately and we will delete it.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2><span>10</span>Changes to This Policy</h2>
+          <p>We may update this Privacy Policy from time to time. We will notify you of material changes by email or by a prominent notice on the Service. The "Last updated" date at the top reflects the most recent revision.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2><span>11</span>Contact &amp; Complaints</h2>
+          <p>For privacy-related questions or to lodge a complaint, contact our Privacy Team:</p>
+          <p><a href="mailto:privacy@instantportfolio.com">privacy@instantportfolio.com</a></p>
+          <p>You also have the right to lodge a complaint with your local data protection authority if you believe we have not handled your data in accordance with applicable law.</p>
+        </div>
+
+        <div class="legal-nav-links">
+          <a href="terms.html">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Terms &amp; Conditions
+          </a>
+          <a href="privacy.html" class="current">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Privacy Policy
+          </a>
+          <a href="dpa.html">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Data Protection Act
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Instant Portfolio. All rights reserved. &nbsp;·&nbsp;
+          <a href="terms.html" style="color:var(--accent)">Terms</a> &nbsp;·&nbsp;
+          <a href="privacy.html" style="color:var(--accent)">Privacy</a> &nbsp;·&nbsp;
+          <a href="dpa.html" style="color:var(--accent)">DPA</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

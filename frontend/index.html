@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instant Portfolio — Turn Your Resume Into a Stunning Portfolio Website</title>
+  <meta name="description" content="Upload your resume and get a professional portfolio website with a shareable link in seconds. Free templates, analytics, custom domains, and more.">
+  <meta property="og:title" content="Instant Portfolio — Resume to Portfolio in Seconds">
+  <meta property="og:description" content="Upload your resume and get a professional portfolio website with a shareable link in seconds.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23f43f5e'/%3E%3Cpath d='M16 6l8 10-8 10-8-10z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== PAGE PRELOADER ===== -->
+  <div id="pageLoader" class="page-loader" role="status" aria-label="Loading Instant Portfolio">
+    <div class="pl-vignette" aria-hidden="true"></div>
+    <div class="pl-grid" aria-hidden="true"></div>
+
+    <div class="pl-center">
+      <svg class="pl-mark" viewBox="0 0 72 72" aria-hidden="true">
+        <defs>
+          <linearGradient id="plGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f43f5e"/>
+            <stop offset="1" stop-color="#fb923c"/>
+          </linearGradient>
+        </defs>
+        <path class="pl-mark-outer" d="M36 4 L68 36 L36 68 L4 36 Z"/>
+        <path class="pl-mark-inner" d="M36 20 L52 36 L36 52 L20 36 Z"/>
+      </svg>
+
+      <div class="pl-word" aria-hidden="true">
+        <span class="pl-l" style="--i:0">I</span><span class="pl-l" style="--i:1">n</span><span class="pl-l" style="--i:2">s</span><span class="pl-l" style="--i:3">t</span><span class="pl-l" style="--i:4">a</span><span class="pl-l" style="--i:5">n</span><span class="pl-l" style="--i:6">t</span><span class="pl-sp" style="--i:7">&nbsp;</span><span class="pl-l pl-em" style="--i:8">P</span><span class="pl-l pl-em" style="--i:9">o</span><span class="pl-l pl-em" style="--i:10">r</span><span class="pl-l pl-em" style="--i:11">t</span><span class="pl-l pl-em" style="--i:12">f</span><span class="pl-l pl-em" style="--i:13">o</span><span class="pl-l pl-em" style="--i:14">l</span><span class="pl-l pl-em" style="--i:15">i</span><span class="pl-l pl-em" style="--i:16">o</span>
+      </div>
+
+      <div class="pl-tag" aria-hidden="true">resume&nbsp;&nbsp;→&nbsp;&nbsp;portfolio&nbsp;&nbsp;·&nbsp;&nbsp;in seconds</div>
+    </div>
+
+    <div class="pl-counter" aria-hidden="true"><span id="plCount">0</span><i>%</i></div>
+    <div class="pl-bar" aria-hidden="true"><span id="plBar"></span></div>
+  </div>
+
+  <!-- ===== T&C MODAL ===== -->
+  <div class="modal-overlay hidden" id="tcModal" role="dialog" aria-modal="true" aria-labelledby="tcModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h2 class="modal-title" id="tcModalTitle">Review Our Policies</h2>
+        <p class="modal-subtitle">Before uploading your resume, please read and accept our terms to continue.</p>
+      </div>
+      <div class="modal-body">
+        <div class="modal-scroll">
+          <h4>Terms &amp; Conditions</h4>
+          <p>By uploading your resume you grant Instant Portfolio a limited, non-exclusive licence to process your data solely to generate and host your portfolio. You confirm the content belongs to you and contains no third-party confidential information.</p>
+
+          <h4>Privacy &amp; Data Use</h4>
+          <p>We collect only the information present in your resume. Your data is encrypted in transit and at rest, never sold to third parties, and retained only as long as your account is active. You may request deletion at any time.</p>
+
+          <h4>Data Protection Act (DPA)</h4>
+          <p>We comply with applicable data protection legislation. You have the right to access, correct, and erase your personal data. For any data-related enquiries contact <strong style="color:var(--accent)">privacy@instantportfolio.com</strong>.</p>
+
+          <div class="modal-policy-links">
+            <a href="terms.html" target="_blank" class="modal-policy-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Terms &amp; Conditions
+            </a>
+            <a href="privacy.html" target="_blank" class="modal-policy-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Privacy Policy
+            </a>
+            <a href="dpa.html" target="_blank" class="modal-policy-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              Data Protection Act
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <label class="modal-check" for="tcAgree">
+          <input type="checkbox" id="tcAgree">
+          <span>I have read and agree to the <a href="terms.html" target="_blank">Terms &amp; Conditions</a>, <a href="privacy.html" target="_blank">Privacy Policy</a>, and <a href="dpa.html" target="_blank">Data Protection Act</a>.</span>
+        </label>
+        <div class="modal-actions">
+          <button class="btn btn-ghost" id="tcDeclineBtn">Decline</button>
+          <button class="btn btn-primary" id="tcAcceptBtn" disabled>
+            <span class="btn-glow"></span>
+            Accept &amp; Continue
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TEMPLATE PREVIEW MODAL ===== -->
+  <div class="tpm-overlay hidden" id="templatePreviewModal">
+    <div class="tpm-bar">
+      <div class="tpm-bar-left">
+        <button class="tpm-back-btn" id="tpmBackBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back to Templates
+        </button>
+        <div class="tpm-theme-pill">
+          <span class="tpm-theme-dot" id="tpmThemeDot"></span>
+          <span id="tpmThemeName">Modern</span>&nbsp;— Live Preview
+        </div>
+      </div>
+      <div class="tpm-bar-right">
+        <button class="btn btn-ghost btn-sm" id="tpmCancelBtn">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="tpmApplyBtn">
+          <span class="btn-glow"></span>
+          Apply Theme
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="tpm-viewport">
+      <div class="tpm-inner" id="tpmPortfolioWrap">
+        <!-- Portfolio clone injected here by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TOAST CONTAINER ===== -->
+  <div id="toast-container"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">&#9670;</span>
+        <span>Instant<span class="logo-accent">Portfolio</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="about.html">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#templates">Templates</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li class="nav-mobile-auth"><a href="login.html">Log In</a></li>
+        <li class="nav-mobile-auth"><a href="signup.html" class="nav-signup-link">Sign Up Free</a></li>
+      </ul>
+      <div class="nav-auth">
+        <a href="login.html" class="btn btn-ghost btn-nav">Log In</a>
+        <a href="signup.html" class="btn btn-primary btn-nav">Sign Up Free</a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb--1"></div>
+      <div class="hero-orb hero-orb--2"></div>
+      <div class="hero-orb hero-orb--3"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-badge fade-up">
+        <span class="badge-dot"></span> AI-Powered Portfolio Builder
+      </div>
+      <h1 class="hero-title fade-up">
+        Turn Your Resume Into a<br>
+        <span class="gradient-text">Stunning Portfolio</span> Instantly
+      </h1>
+      <p class="hero-sub fade-up">
+        Upload your resume and get a professional portfolio website<br class="hide-mobile">
+        with a shareable link — in seconds, not hours.
+      </p>
+      <div class="hero-actions fade-up">
+        <a href="#upload" class="btn btn-primary btn-lg">
+          <span class="btn-glow"></span>
+          Generate Portfolio
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <button class="btn btn-ghost btn-lg" id="watchDemoBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Watch Demo
+        </button>
+      </div>
+      <!-- Hero Preview Card -->
+      <div class="hero-preview fade-up">
+        <div class="preview-window">
+          <div class="preview-dots"><span></span><span></span><span></span></div>
+          <div class="preview-bar"></div>
+          <div class="preview-body">
+            <div class="preview-avatar"></div>
+            <div class="preview-lines">
+              <div class="preview-line" style="width:60%"></div>
+              <div class="preview-line" style="width:40%"></div>
+              <div class="preview-line" style="width:80%"></div>
+            </div>
+            <div class="preview-cards">
+              <div class="preview-card-mini"></div>
+              <div class="preview-card-mini"></div>
+              <div class="preview-card-mini"></div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== UPLOAD RESUME ===== -->
+  <section class="section upload-section" id="upload">
+    <div class="container">
+      <div class="section-label fade-up">Upload</div>
+      <h2 class="section-title fade-up">Upload Your Resume</h2>
+      <p class="section-sub fade-up">Drop your resume and watch the magic happen</p>
+
+      <div class="upload-wrapper fade-up">
+        <!-- Upload State -->
+        <div class="upload-card" id="uploadCard">
+          <div class="upload-dropzone" id="dropzone">
+            <div class="upload-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <p class="upload-text">Drag & drop your resume here</p>
+            <p class="upload-or">or</p>
+            <label class="btn btn-primary btn-sm upload-browse">
+              Browse Files
+              <input type="file" id="fileInput" accept=".pdf,.docx" hidden>
+            </label>
+            <p class="upload-formats">Supports PDF, DOCX</p>
+          </div>
+        </div>
+
+        <!-- LinkedIn Import -->
+        <div class="linkedin-import-sec fade-up" id="linkedinImportSec">
+          <div class="import-or-divider"><span>or import instantly</span></div>
+          <button class="btn-linkedin-import" id="linkedinImportBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Import from LinkedIn
+          </button>
+          <p class="import-note">Auto-fill your profile from LinkedIn in one click</p>
+        </div>
+
+        <!-- Details Form State -->
+        <div class="details-card hidden" id="detailsCard">
+          <div class="details-header">
+            <div class="details-file-badge" id="detailsFileBadge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span id="detailsFileName">resume.pdf</span>
+              <span class="details-file-ok">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+            </div>
+            <h3 class="details-title">Almost there! Fill in your details</h3>
+            <p class="details-sub">This information will appear on your generated portfolio.</p>
+          </div>
+
+          <!-- Parse status bar — shown while reading the resume -->
+          <div class="details-parse-status hidden" id="resumeParseStatus">
+            <div class="details-parse-spin"></div>
+            <span id="resumeParseMsg">Reading your resume…</span>
+          </div>
+
+          <form class="details-form" id="detailsForm" novalidate>
+            <div class="details-row">
+              <div class="details-field">
+                <label class="details-label" for="dfName">Full Name <span class="details-req">*</span></label>
+                <input type="text" id="dfName" class="details-input" placeholder="e.g. Sarah Johnson" required autocomplete="name">
+              </div>
+              <div class="details-field">
+                <label class="details-label" for="dfTitle">Job Title / Role <span class="details-req">*</span></label>
+                <input type="text" id="dfTitle" class="details-input" placeholder="e.g. Full-Stack Developer" required>
+              </div>
+            </div>
+            <div class="details-row">
+              <div class="details-field">
+                <label class="details-label" for="dfEmail">Email <span class="details-req">*</span></label>
+                <input type="email" id="dfEmail" class="details-input" placeholder="you@example.com" required autocomplete="email">
+              </div>
+              <div class="details-field">
+                <label class="details-label" for="dfPhone">Phone</label>
+                <input type="tel" id="dfPhone" class="details-input" placeholder="+1 (555) 000-0000" autocomplete="tel">
+              </div>
+            </div>
+            <div class="details-row">
+              <div class="details-field details-field-full">
+                <label class="details-label" for="dfLocation">Location</label>
+                <input type="text" id="dfLocation" class="details-input" placeholder="e.g. London, UK" autocomplete="address-level2">
+              </div>
+            </div>
+            <div class="details-row">
+              <div class="details-field details-field-full">
+                <label class="details-label" for="dfAbout">Short Bio / Summary</label>
+                <textarea id="dfAbout" class="details-input details-textarea" rows="3" placeholder="Write a 2-3 sentence summary about yourself and your expertise…"></textarea>
+              </div>
+            </div>
+            <div class="details-row">
+              <div class="details-field details-field-full">
+                <label class="details-label" for="dfSkills">Key Skills <span class="details-hint">(comma-separated)</span></label>
+                <input type="text" id="dfSkills" class="details-input" placeholder="e.g. React, Node.js, Python, AWS, Docker">
+                <div class="details-skill-preview" id="dfSkillPreview"></div>
+              </div>
+            </div>
+            <div class="details-actions">
+              <button type="button" class="btn btn-ghost" id="detailsBackBtn">← Back</button>
+              <button type="submit" class="btn btn-primary" id="detailsGenerateBtn">
+                <span class="btn-glow"></span>
+                Generate My Portfolio
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Processing State -->
+        <div class="processing-card hidden" id="processingCard">
+          <div class="processing-header">
+            <div class="processing-spinner"></div>
+            <h3>Generating Your Portfolio</h3>
+          </div>
+          <div class="progress-steps" id="progressSteps">
+            <div class="progress-step" data-step="0">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <span>Reading Resume</span>
+              <div class="step-status"></div>
+            </div>
+            <div class="progress-step" data-step="1">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <span>Extracting Skills</span>
+              <div class="step-status"></div>
+            </div>
+            <div class="progress-step" data-step="2">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              </div>
+              <span>Building Portfolio</span>
+              <div class="step-status"></div>
+            </div>
+            <div class="progress-step" data-step="3">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+              </div>
+              <span>Generating Link</span>
+              <div class="step-status"></div>
+            </div>
+            <div class="progress-step" data-step="4">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <span>Done!</span>
+              <div class="step-status"></div>
+            </div>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progressBar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GENERATED PORTFOLIO PREVIEW ===== -->
+  <section class="section portfolio-section hidden" id="portfolioPreview">
+    <div class="container">
+      <div class="section-label fade-up">Preview</div>
+      <h2 class="section-title fade-up">Your Portfolio is Ready</h2>
+      <p class="section-sub fade-up">Here's a preview of your generated portfolio</p>
+
+      <!-- Portfolio Editor Toolbar -->
+      <div class="pf-editor-bar hidden" id="pfEditorBar">
+        <div class="pf-editor-bar-inner">
+          <div class="pf-editor-left">
+            <div class="pf-editor-indicator"><span class="pf-editor-dot"></span>Edit Mode</div>
+          </div>
+          <div class="pf-editor-center">
+            <button class="pf-editor-tool" id="editorColorTool">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+              Accent Color
+              <div class="color-picker-pop hidden" id="colorPickerPop">
+                <div class="color-swatch" data-color="#f43f5e" style="background:#f43f5e"></div>
+                <div class="color-swatch" data-color="#6c63ff" style="background:#6c63ff"></div>
+                <div class="color-swatch" data-color="#00d4aa" style="background:#00d4aa"></div>
+                <div class="color-swatch" data-color="#ff6b35" style="background:#ff6b35"></div>
+                <div class="color-swatch" data-color="#ffd700" style="background:#ffd700"></div>
+                <div class="color-swatch" data-color="#00ff88" style="background:#00ff88"></div>
+              </div>
+            </button>
+          </div>
+          <div class="pf-editor-right">
+            <button class="btn btn-ghost btn-sm" id="editorCancelBtn">Discard</button>
+            <button class="btn btn-primary btn-sm" id="editorSaveBtn"><span class="btn-glow"></span>Save Changes</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Actions -->
+      <div class="pf-action-row hidden" id="pfActionRow">
+        <button class="pf-action-pill" id="analyticsModalBtn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Analytics
+        </button>
+        <button class="pf-action-pill" id="aiImproveModalBtn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          AI Improve
+        </button>
+        <button class="pf-action-pill" id="seoModalBtn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          SEO
+        </button>
+        <button class="pf-action-pill" id="customDomainModalBtn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          Custom Domain
+        </button>
+      </div>
+
+      <!-- Template chooser: appears once the portfolio is generated -->
+      <div class="tc-panel hidden fade-up" id="templateChooser" role="group" aria-label="Choose template and color">
+        <div class="tc-group">
+          <div class="tc-label">Choose your template</div>
+          <div class="tc-styles" id="tcStyles">
+            <button class="tc-style" data-style="midnight" type="button">
+              <span class="tc-style-thumb tc-thumb-midnight"><i></i><i></i><i></i></span>
+              <span class="tc-style-name">Midnight</span>
+              <span class="tc-style-desc">Dark · bold display type</span>
+            </button>
+            <button class="tc-style" data-style="paper" type="button">
+              <span class="tc-style-thumb tc-thumb-paper"><i></i><i></i><i></i></span>
+              <span class="tc-style-name">Paper</span>
+              <span class="tc-style-desc">Light · serif editorial</span>
+            </button>
+            <button class="tc-style" data-style="soft" type="button">
+              <span class="tc-style-thumb tc-thumb-soft"><i></i><i></i><i></i></span>
+              <span class="tc-style-name">Soft</span>
+              <span class="tc-style-desc">Light · airy cards</span>
+            </button>
+            <button class="tc-style" data-style="terminal" type="button">
+              <span class="tc-style-thumb tc-thumb-terminal"><i></i><i></i><i></i></span>
+              <span class="tc-style-name">Terminal</span>
+              <span class="tc-style-desc">Mono · hacker console</span>
+            </button>
+          </div>
+        </div>
+        <div class="tc-group">
+          <div class="tc-label">Color theme <span class="tc-hint">(10 options)</span></div>
+          <div class="tc-colors" id="tcColors"><!-- swatches injected by script.js --></div>
+        </div>
+      </div>
+
+      <!-- Live preview: the REAL portfolio page in a framed viewport -->
+      <div class="pf-frame-wrap hidden fade-up" id="pfFrameWrap">
+        <div class="pf-frame-chrome">
+          <span></span><span></span><span></span>
+          <div class="pf-frame-url" id="pfFrameUrl">your-portfolio</div>
+          <a class="pf-frame-open" id="pfFrameOpen" href="portfolio.html" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <iframe id="pfFrame" class="pf-frame" title="Live portfolio preview" src="about:blank"></iframe>
+      </div>
+
+      <!-- Legacy inline card (superseded by the live iframe preview above) -->
+      <div class="portfolio-card fade-up hidden" id="portfolioCard" aria-hidden="true">
+
+        <!-- HERO -->
+        <div class="pf-hero">
+          <div class="pf-cover">
+            <div class="pf-cover-grid"></div>
+            <div class="pf-cover-band"></div>
+          </div>
+          <div class="pf-identity">
+            <div class="pf-avatar-lg" id="pfAvatar">JD</div>
+            <div class="pf-name-block">
+              <h2 class="pf-name" id="pfName">John Doe</h2>
+              <div class="pf-role-line" id="pfRole">Senior Full-Stack Developer</div>
+              <div class="pf-meta-row">
+                <span class="pf-meta-item" id="pfLocation">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  San Francisco, CA
+                </span>
+                <span class="pf-avail-badge"><span class="pf-avail-dot"></span>Available for hire</span>
+              </div>
+            </div>
+            <div class="pf-cta-wrap">
+              <a href="#" class="btn btn-primary btn-sm"><span class="btn-glow"></span>Hire Me</a>
+              <a href="#" class="btn btn-ghost btn-sm">Download CV</a>
+            </div>
+          </div>
+          <div class="pf-social-bar">
+            <a href="#" class="pf-social-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="#" class="pf-social-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="#" class="pf-social-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Twitter
+            </a>
+            <a href="#" class="pf-social-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Email
+            </a>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="pf-stats-row">
+          <div class="pf-stat-item"><strong>8+</strong><span>Years Exp</span></div>
+          <div class="pf-stat-item"><strong>50+</strong><span>Projects</span></div>
+          <div class="pf-stat-item"><strong>20+</strong><span>Clients</span></div>
+          <div class="pf-stat-item"><strong>5</strong><span>Awards</span></div>
+        </div>
+
+        <!-- BODY -->
+        <div class="pf-body">
+
+          <!-- ABOUT -->
+          <section class="pf-sec">
+            <h3 class="pf-sec-title">About</h3>
+            <p class="pf-about-text" id="pfAbout">Passionate full-stack developer with 8+ years of experience building scalable web applications and leading engineering teams at top-tier tech companies. I turn complex problems into elegant, high-performance solutions that delight users at scale.</p>
+          </section>
+
+          <!-- SKILLS -->
+          <section class="pf-sec">
+            <h3 class="pf-sec-title">Tech Stack</h3>
+            <div class="pf-skills-grid" id="pfSkillsGrid">
+              <div class="pf-skill-cat">
+                <span class="pf-skill-cat-label">Frontend</span>
+                <div class="pf-skill-tags">
+                  <span class="pf-tag">React</span><span class="pf-tag">TypeScript</span>
+                  <span class="pf-tag">Next.js</span><span class="pf-tag">Tailwind CSS</span>
+                </div>
+              </div>
+              <div class="pf-skill-cat">
+                <span class="pf-skill-cat-label">Backend</span>
+                <div class="pf-skill-tags">
+                  <span class="pf-tag">Node.js</span><span class="pf-tag">Python</span>
+                  <span class="pf-tag">GraphQL</span><span class="pf-tag">PostgreSQL</span>
+                </div>
+              </div>
+              <div class="pf-skill-cat">
+                <span class="pf-skill-cat-label">Cloud &amp; DevOps</span>
+                <div class="pf-skill-tags">
+                  <span class="pf-tag">AWS</span><span class="pf-tag">Docker</span>
+                  <span class="pf-tag">Kubernetes</span><span class="pf-tag">CI/CD</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- PROJECTS -->
+          <section class="pf-sec">
+            <h3 class="pf-sec-title">Featured Projects</h3>
+            <div class="pf-projects-grid">
+              <div class="pf-project-card">
+                <div class="pf-proj-header">
+                  <div class="pf-proj-icon">🛍️</div>
+                  <div class="pf-proj-ext"><a href="#">Live ↗</a><a href="#">Code</a></div>
+                </div>
+                <h4 class="pf-proj-name">E-Commerce Platform</h4>
+                <p class="pf-proj-desc">Scalable marketplace handling 50k+ daily transactions with real-time inventory and AI-powered recommendations.</p>
+                <div class="pf-proj-tech"><span>React</span><span>Node.js</span><span>AWS</span><span>Redis</span></div>
+              </div>
+              <div class="pf-project-card">
+                <div class="pf-proj-header">
+                  <div class="pf-proj-icon">📊</div>
+                  <div class="pf-proj-ext"><a href="#">Live ↗</a><a href="#">Code</a></div>
+                </div>
+                <h4 class="pf-proj-name">AI Analytics Dashboard</h4>
+                <p class="pf-proj-desc">Real-time data visualization platform serving 200+ enterprise clients with ML-powered insights and predictive analytics.</p>
+                <div class="pf-proj-tech"><span>Next.js</span><span>Python</span><span>TensorFlow</span></div>
+              </div>
+              <div class="pf-project-card">
+                <div class="pf-proj-header">
+                  <div class="pf-proj-icon">⚙️</div>
+                  <div class="pf-proj-ext"><a href="#">Live ↗</a><a href="#">Code</a></div>
+                </div>
+                <h4 class="pf-proj-name">DevOps Automation Suite</h4>
+                <p class="pf-proj-desc">CI/CD pipeline framework reducing deployment time by 75% and increasing release frequency 3×.</p>
+                <div class="pf-proj-tech"><span>Docker</span><span>K8s</span><span>GitHub Actions</span></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- EXPERIENCE -->
+          <section class="pf-sec">
+            <h3 class="pf-sec-title">Experience</h3>
+            <div class="pf-timeline">
+              <div class="pf-tl-item">
+                <div class="pf-tl-dot"></div>
+                <div class="pf-tl-content">
+                  <div class="pf-tl-header">
+                    <span class="pf-tl-title">Lead Engineer</span>
+                    <span class="pf-tl-badge">Current</span>
+                  </div>
+                  <div class="pf-tl-company">TechVentures Inc.</div>
+                  <div class="pf-tl-period">2021 – Present · 3 yrs</div>
+                  <p class="pf-tl-desc">Led a team of 8 engineers, architected microservices platform serving 2M+ users.</p>
+                </div>
+              </div>
+              <div class="pf-tl-item">
+                <div class="pf-tl-dot"></div>
+                <div class="pf-tl-content">
+                  <div class="pf-tl-header"><span class="pf-tl-title">Senior Developer</span></div>
+                  <div class="pf-tl-company">CloudScale</div>
+                  <div class="pf-tl-period">2018 – 2021 · 3 yrs</div>
+                  <p class="pf-tl-desc">Built core infrastructure components, improved API response time by 60%.</p>
+                </div>
+              </div>
+              <div class="pf-tl-item">
+                <div class="pf-tl-dot"></div>
+                <div class="pf-tl-content">
+                  <div class="pf-tl-header"><span class="pf-tl-title">Full-Stack Developer</span></div>
+                  <div class="pf-tl-company">StartupHub</div>
+                  <div class="pf-tl-period">2016 – 2018 · 2 yrs</div>
+                  <p class="pf-tl-desc">Developed 3 SaaS products from scratch, contributed to Series A fundraising materials.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- GITHUB REPOS -->
+          <section class="pf-sec pf-github-sec hidden" id="pfGithubSec">
+            <h3 class="pf-sec-title">GitHub Repositories</h3>
+            <div class="gh-connect-prompt" id="ghConnectPrompt">
+              <div class="gh-connect-inner">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="opacity:0.4"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <p>Enter a GitHub username to display their top repositories</p>
+                <div class="gh-input-row">
+                  <input type="text" id="ghUsernameInput" placeholder="e.g. torvalds" class="gh-input">
+                  <button class="btn btn-primary btn-sm" id="ghFetchBtn"><span class="btn-glow"></span>Connect</button>
+                </div>
+              </div>
+            </div>
+            <div class="gh-repos-grid hidden" id="ghReposGrid"></div>
+          </section>
+
+          <!-- CONTACT -->
+          <section class="pf-sec pf-contact-sec">
+            <h3 class="pf-sec-title">Get In Touch</h3>
+            <p>Open to exciting opportunities and collaborations. Let's build something amazing together.</p>
+            <div class="pf-contact-btns">
+              <a href="mailto:john.doe@email.com" class="pf-contact-link" id="pfEmailLink">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span id="pfEmailText">john.doe@email.com</span>
+              </a>
+              <a href="tel:+14155550123" class="pf-contact-link" id="pfPhoneLink">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.4 12.28 19.79 19.79 0 011.34 3.7 2 2 0 013.33 1.5h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.91 9a16 16 0 006.29 6.29l.82-.82a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                <span id="pfPhoneText">+1 (415) 555-0123</span>
+              </a>
+              <a href="#" class="pf-contact-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                johndoe.dev
+              </a>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- Generated Link -->
+      <div class="link-card fade-up" id="linkCard">
+        <div class="link-success">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h3>Portfolio Generated Successfully</h3>
+        </div>
+        <div class="link-url-wrap">
+          <div class="link-url" id="generatedUrl">https://instantportfolio.com/john-doe</div>
+          <button class="btn btn-primary btn-sm" id="copyLinkBtn">Copy Link</button>
+          <button class="btn btn-ghost btn-sm" id="openPortfolioBtn">Open Portfolio</button>
+        </div>
+      </div>
+      <!-- ATS Score Card -->
+      <div class="ats-card hidden fade-up" id="atsCard">
+        <div class="ats-card-inner">
+          <div class="ats-card-left">
+            <div class="ats-label">ATS Resume Score</div>
+            <h3>Your resume scores well for ATS systems</h3>
+            <p class="ats-subtitle">Applicant Tracking System analysis based on your uploaded resume content</p>
+            <div class="ats-categories">
+              <div class="ats-cat-item">
+                <div class="ats-cat-row"><span>Keywords Match</span><span class="ats-cat-pct">88%</span></div>
+                <div class="ats-cat-bar"><div class="ats-cat-fill" data-w="88" style="background:var(--accent)"></div></div>
+              </div>
+              <div class="ats-cat-item">
+                <div class="ats-cat-row"><span>Formatting</span><span class="ats-cat-pct">92%</span></div>
+                <div class="ats-cat-bar"><div class="ats-cat-fill" data-w="92" style="background:#6c63ff"></div></div>
+              </div>
+              <div class="ats-cat-item">
+                <div class="ats-cat-row"><span>Section Structure</span><span class="ats-cat-pct">75%</span></div>
+                <div class="ats-cat-bar"><div class="ats-cat-fill" data-w="75" style="background:#00d4aa"></div></div>
+              </div>
+              <div class="ats-cat-item">
+                <div class="ats-cat-row"><span>Contact Info</span><span class="ats-cat-pct">95%</span></div>
+                <div class="ats-cat-bar"><div class="ats-cat-fill" data-w="95" style="background:#ffd700"></div></div>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-sm" id="openAiImproveBtn"><span class="btn-glow"></span>Improve with AI</button>
+          </div>
+          <div class="ats-card-right">
+            <div class="ats-score-ring-wrap">
+              <svg class="ats-ring-svg" viewBox="0 0 120 120" width="120" height="120">
+                <defs>
+                  <linearGradient id="atsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#f43f5e"/>
+                    <stop offset="100%" style="stop-color:#00d4aa"/>
+                  </linearGradient>
+                </defs>
+                <circle class="ats-ring-bg" cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="8"/>
+                <circle class="ats-ring-fill" cx="60" cy="60" r="50" fill="none" stroke="url(#atsGrad)" stroke-width="8"
+                  stroke-dasharray="314" stroke-dashoffset="57" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+              </svg>
+              <div class="ats-ring-content">
+                <span class="ats-score-num">82</span>
+                <span class="ats-score-lbl">/ 100</span>
+              </div>
+            </div>
+            <div class="ats-grade-badge">Good</div>
+            <ul class="ats-tips-list">
+              <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00d4aa" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Add more industry keywords</li>
+              <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00d4aa" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Quantify achievements</li>
+              <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00d4aa" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Add certifications section</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="section features-section" id="features">
+    <div class="container">
+      <div class="section-label fade-up">Features</div>
+      <h2 class="section-title fade-up">Everything You Need</h2>
+      <p class="section-sub fade-up">Powerful features designed to make portfolio creation effortless</p>
+
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 014 4v2H8V6a4 4 0 014-4z"/><path d="M4 10h16v10a2 2 0 01-2 2H6a2 2 0 01-2-2V10z"/><circle cx="12" cy="16" r="1"/></svg>
+          </div>
+          <h3>AI Resume Parsing</h3>
+          <p>Our AI reads and understands your resume structure, extracting skills, experience, and projects automatically.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Instant Portfolio Creation</h3>
+          <p>Your portfolio is built in seconds. No manual setup, no design skills required — just upload and go.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <h3>Shareable Portfolio Links</h3>
+          <p>Get a unique, clean URL for your portfolio that you can share with recruiters and on social media.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3>Mobile Responsive Design</h3>
+          <p>Every portfolio looks stunning on desktop, tablet, and mobile — perfectly optimized for any screen.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </div>
+          <h3>Multiple Portfolio Themes</h3>
+          <p>Choose from curated themes — Modern, Creative, Minimal, or Professional — to match your personal brand.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.5 2v6h-6M2.5 22v-6h6"/><path d="M2.5 16A10 10 0 0121.5 8"/><path d="M21.5 8A10 10 0 012.5 16"/></svg>
+          </div>
+          <h3>One-Click Updates</h3>
+          <p>Updated your resume? Re-upload and your portfolio refreshes instantly. Always up-to-date, zero effort.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3>Analytics Dashboard</h3>
+          <p>Track portfolio views, unique visitors, referral sources, and click-through rates in real time.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </div>
+          <h3>GitHub Integration</h3>
+          <p>Connect your GitHub to auto-display your top repositories with stars, forks, and language badges.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <h3>ATS Resume Score</h3>
+          <p>Instant ATS compatibility score with keyword analysis, formatting checks, and actionable suggestions.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>AI Resume Improvement</h3>
+          <p>AI rewrites your summary, bullet points, and skills to maximise impact and recruiter engagement.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </div>
+          <h3>SEO Optimization</h3>
+          <p>Auto-generated meta tags, Open Graph, and Schema.org markup so your portfolio ranks on Google.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <h3>Custom Domain</h3>
+          <p>Connect your own domain (e.g. yourname.com) with one-click DNS setup and free SSL certificate.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h3>AI Portfolio Chatbot</h3>
+          <p>Embedded AI assistant answers recruiter questions about your skills, projects, and availability 24/7.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
+          </div>
+          <h3>LinkedIn Import</h3>
+          <p>One-click import of your LinkedIn profile — headline, experience, education, and skills auto-populated.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section works-section" id="how-it-works">
+    <div class="container">
+      <div class="section-label fade-up">Process</div>
+      <h2 class="section-title fade-up">How It Works</h2>
+      <p class="section-sub fade-up">Three simple steps to your professional portfolio</p>
+
+      <div class="steps-timeline">
+        <div class="step-card fade-up">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-icon-wrap">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <h3>Upload Resume</h3>
+            <p>Drop your PDF or DOCX resume into our secure uploader</p>
+          </div>
+        </div>
+        <div class="step-connector fade-up">
+          <div class="connector-line"></div>
+          <div class="connector-dot"></div>
+        </div>
+        <div class="step-card fade-up">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-icon-wrap">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            </div>
+            <h3>Portfolio Generated</h3>
+            <p>AI parses your resume and builds a beautiful portfolio page</p>
+          </div>
+        </div>
+        <div class="step-connector fade-up">
+          <div class="connector-line"></div>
+          <div class="connector-dot"></div>
+        </div>
+        <div class="step-card fade-up">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-icon-wrap">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
+            <h3>Share Your Link</h3>
+            <p>Copy your unique link and share it with the world</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEMPLATES ===== -->
+  <section class="section templates-section" id="templates">
+    <div class="container">
+      <div class="section-label fade-up">Templates</div>
+      <h2 class="section-title fade-up">10 Stunning Styles</h2>
+      <p class="section-sub fade-up">Every theme is a mini portfolio — pick the one that fits your vibe</p>
+
+      <div class="templates-grid">
+
+        <!-- 1. Modern -->
+        <div class="template-card fade-up" data-theme="modern">
+          <div class="template-preview modern-theme">
+            <div class="tp-chrome"><span></span><span></span><span></span></div>
+            <div class="tp-cover-band"></div>
+            <div class="tp-profile">
+              <div class="tp-av"><div class="tp-av-inner">M</div></div>
+              <div class="tp-details"><div class="tp-name-bar"></div><div class="tp-role-bar"></div></div>
+            </div>
+            <div class="tp-chip-row">
+              <div class="tp-chip-pill"></div><div class="tp-chip-pill"></div><div class="tp-chip-pill"></div>
+            </div>
+            <div class="tp-proj-row">
+              <div class="tp-proj-block"></div><div class="tp-proj-block"></div>
+            </div>
+            <div class="tp-hover-overlay"><span>Preview</span></div>
+          </div>
+          <div class="template-info">
+            <div class="template-info-top">
+              <h3>Modern</h3><span class="tp-badge tp-badge-popular">Popular</span>
+            </div>
+            <p>Clean lines, bold indigo accents</p>
+            <button class="btn btn-primary btn-sm">Select</button>
+          </div>
+        </div>
+
+        <!-- 2. Creative -->
+        <div class="template-card fade-up" data-theme="creative">
+          <div class="template-preview creative-theme">
+            <div class="tp-chrome"><span></span><span></span><span></span></div>
+            <div class="tp-cover-band"></div>
+            <div class="tp-profile">
+              <div class="tp-av"><div class="tp-av-inner">C</div></div>
+              <div class="tp-details"><div class="tp-name-bar"></div><div class="tp-role-bar"></div></div>
+            </div>
+            <div class="tp-chip-row">
+              <div class="tp-chip-pill"></div><div class="tp-chip-pill"></div><div class="tp-chip-pill"></div>
+            </div>
+            <div class="tp-proj-row">
+              <div class="tp-proj-block"></div><div class="tp-proj-block"></div>
+            </div>
+            <div class="tp-hover-overlay"><span>Preview</span></div>
+          </div>
+          <div class="template-info">
+            <div class="template-info-top">
+              <h3>Creative</h3><span class="tp-badge tp-badge-popular">Popular</span>
+            </div>
+            <p>Vibrant magenta, dynamic energy</p>
+            <button class="btn btn-primary btn-sm">Select</button>
+          </div>
+        </div>
+
+        <!-- 3. Minimal -->
+        <div class="template-card fade-up" data-theme="minimal">
+          <div class="template-preview minimal-theme">
+            <div class="tp-chrome"><span></span><span></span><span></span></div>
+            <div class="tp-cover-band"></div>
+            <div class="tp-profile">
+              <div class="tp-av"><div class="tp-av-inner">K</div></div>
+              <div class="tp-details"><div class="tp-name-bar"></div><div class="tp-role-bar"></div></div>
+            </div>
+            <div class="tp-chip-row">
+              <div class="tp-chip-pill"></div><div class="tp-chip-pill"></div><div class="tp-chip-pill"></div>
+            </div>
+            <div class="tp-proj-row">
+              <div class="tp-proj-block"></div><div class="tp-proj-block"></div>
+            </div>
+            <div class="tp-hover-overlay"><span>Preview</span></div>
+          </div>
+          <div class="template-info">
+            <div class="template-info-top">
+              <h3>Minimal</h3>
+            </div>
+            <p>Pure monochrome, elegant silence</p>
+            <button class="btn btn-primary btn-sm">Select</button>
+          </div>
+        </div>
+
+        <!-- 4. Professional -->
+        <div class="template-card fade-up" data-theme="professional">
+          <div class="template-preview professional-theme">
+            <div class="tp-chrome"><span></span><span></span><span></span></div>
+            <div class="tp-cover-band"></div>
+            <div class="tp-profile">
+              <div class="tp-av"><div class="tp-av-inner">P</div></div>
+              <div class="tp-details"><div class="tp-name-bar"></div><div class="tp-role-bar"></div></div>
+            </div>
+            <div class="tp-chip-row">
+              <div class="tp-chip-pill"></div><div class="tp-chip-pill"></div><div class="tp-chip-pill"></div>
+            </div>
+            <div class="tp-proj-row">
+              <div class="tp-proj-block"></div><div class="tp-proj-block"></div>
+            </div>
+            <div class="tp-hover-overlay"><span>Preview</span></div>
+          </div>
+          <div class="template-info">
+            <div class="template-info-top">
+              <h3>Professional</h3>
+            </div>
+            <p>Corporate navy, sky-blue clarity</p>
+            <button class="btn btn-primary btn-sm">Select</button>
+          </div>
+        </div>
+
+        <!-- 5. Neon Pulse -->
+        <div class="template-card fade-up" data-theme="neon">
+          <div class="template-preview neon-theme">
+            <div class="tp-chrome"><span></span><span></span><span></span></div>
+            <div class="tp-cover-band"></div>
+            <div class="tp-profile">
+              <div class="tp-av"><div class="tp-av-inner">N</div></div>
+              <div class="tp-details"><div class="tp-name-bar"></div><div class="tp-role-bar"></div></div>
+            </div>
+            <div class="tp-chip-row">
+              <div class="tp-chip-pill"></div><div class="tp-chip-pill"></div><div class="tp-chip-pill"></div>
+            </div>
+            <div class="tp-proj-row">
+              <div class="tp-proj-block"></div><div class="tp-proj-block"></div>
+            </div>
+            <div class="tp-hover-overlay"><span>Preview</span></div>
+          </div>
+          <div class="template-info">
+            <div class="template-info-top">
+              <h3>Neon Pulse</h3><span class="tp-badge tp-badge-new">New</span>
+            </div>
+            <p>Electric green on deep black</p>
+            <button class="btn btn-primary btn-sm">Select</button>
+          </div>
+        </div>
+
+        <!-- 6. Sunset Blaze -->
+        <div class="template-card fade-up" data-theme="sunset">
+          <div class="template-preview sunset-theme">
+            <div class="tp-chrome"><span></span><span></span><span></span></div>
+            <div class="tp-cover-band"></div>
+            <div class="tp-profile">
+              <div class="tp-av"><div class="tp-av-inner">S</div></div>
+              <div class="tp-details"><div class="tp-name-bar"></div><div class="tp-role-bar"></div></div>
+            </div>
+            <div class="tp-chip-row">
+              <div class="tp-chip-pill"></div><div class="tp-chip-pill"></div><div class="tp-chip-pill"></div>
+            </div>
+            <div class="tp-proj-row">
+              <div class="tp-proj-block"></div><div class="tp-proj-block"></div>
+            </div>
+            <div class="tp-hover-overlay"><span>Preview</span></div>
+          </div>
+          <div class="template-info">
+            <div class="template-info-top">
+              <h3>Sunset Blaze</h3><span class="tp-badge tp-badge-new">New</span>
+            </div>
+            <p>Warm coral to golden amber</p>
+            <button class="btn btn-primary btn-sm">Select</button>
+          </div>
+        </div>
+
+        <!-- 7. Ocean Depth -->
+        <div class="template-card fade-up" data-theme="ocean">
+          <div class="template-preview ocean-theme">
+            <div class="tp-chrome"><span></span><span></span><span></span></div>
+            <div class="tp-cover-band"></div>
+            <div class="tp-profile">
+              <div class="tp-av"><div class="tp-av-inner">O</div></div>
+              <div class="tp-details"><div class="tp-name-bar"></div><div class="tp-role-bar"></div></div>
+            </div>
+            <div class="tp-chip-row">
+              <div class="tp-chip-pill"></div><div class="tp-chip-pill"></div><div class="tp-chip-pill"></div>
+            </div>
+            <div class="tp-proj-row">
+              <div class="tp-proj-block"></div><div class="tp-proj-block"></div>
+            </div>
+            <div class="tp-hover-overlay"><span>Preview</span></div>
+          </div>
+          <div class="template-info">
+            <div class="template-info-top">
+              <h3>Ocean Depth</h3>
+            </div>
+            <p>Deep teal, aqua clarity</p>
+            <button class="btn btn-primary btn-sm">Select</button>
+          </div>
+        </div>
+
+        <!-- 8. Midnight Gold -->
+        <div class="template-card fade-up" data-theme="gold">
+          <div class="template-preview gold-theme">
+            <div class="tp-chrome"><span></span><span></span><span></span></div>
+            <div class="tp-cover-band"></div>
+            <div class="tp-profile">
+              <div class="tp-av"><div class="tp-av-inner">G</div></div>
+              <div class="tp-details"><div class="tp-name-bar"></div><div class="tp-role-bar"></div></div>
+            </div>
+            <div class="tp-chip-row">
+              <div class="tp-chip-pill"></div><div class="tp-chip-pill"></div><div class="tp-chip-pill"></div>
+            </div>
+            <div class="tp-proj-row">
+              <div class="tp-proj-block"></div><div class="tp-proj-block"></div>
+            </div>
+            <div class="tp-hover-overlay"><span>Preview</span></div>
+          </div>
+          <div class="template-info">
+            <div class="template-info-top">
+              <h3>Midnight Gold</h3><span class="tp-badge tp-badge-premium">Premium</span>
+            </div>
+            <p>Dark obsidian with liquid gold</p>
+            <button class="btn btn-primary btn-sm">Select</button>
+          </div>
+        </div>
+
+        <!-- 9. Forest Dew -->
+        <div class="template-card fade-up" data-theme="forest">
+          <div class="template-preview forest-theme">
+            <div class="tp-chrome"><span></span><span></span><span></span></div>
+            <div class="tp-cover-band"></div>
+            <div class="tp-profile">
+              <div class="tp-av"><div class="tp-av-inner">F</div></div>
+              <div class="tp-details"><div class="tp-name-bar"></div><div class="tp-role-bar"></div></div>
+            </div>
+            <div class="tp-chip-row">
+              <div class="tp-chip-pill"></div><div class="tp-chip-pill"></div><div class="tp-chip-pill"></div>
+            </div>
+            <div class="tp-proj-row">
+              <div class="tp-proj-block"></div><div class="tp-proj-block"></div>
+            </div>
+            <div class="tp-hover-overlay"><span>Preview</span></div>
+          </div>
+          <div class="template-info">
+            <div class="template-info-top">
+              <h3>Forest Dew</h3><span class="tp-badge tp-badge-new">New</span>
+            </div>
+            <p>Emerald greens, earthy depth</p>
+            <button class="btn btn-primary btn-sm">Select</button>
+          </div>
+        </div>
+
+        <!-- 10. Aurora -->
+        <div class="template-card fade-up" data-theme="aurora">
+          <div class="template-preview aurora-theme">
+            <div class="tp-chrome"><span></span><span></span><span></span></div>
+            <div class="tp-cover-band"></div>
+            <div class="tp-profile">
+              <div class="tp-av"><div class="tp-av-inner">A</div></div>
+              <div class="tp-details"><div class="tp-name-bar"></div><div class="tp-role-bar"></div></div>
+            </div>
+            <div class="tp-chip-row">
+              <div class="tp-chip-pill"></div><div class="tp-chip-pill"></div><div class="tp-chip-pill"></div>
+            </div>
+            <div class="tp-proj-row">
+              <div class="tp-proj-block"></div><div class="tp-proj-block"></div>
+            </div>
+            <div class="tp-hover-overlay"><span>Preview</span></div>
+          </div>
+          <div class="template-info">
+            <div class="template-info-top">
+              <h3>Aurora</h3><span class="tp-badge tp-badge-premium">Premium</span>
+            </div>
+            <p>Northern lights, multi-hue magic</p>
+            <button class="btn btn-primary btn-sm">Select</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BENEFITS / STATS ===== -->
+  <section class="section stats-section" id="benefits">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card fade-up">
+          <div class="stat-number" data-target="10000">0</div>
+          <div class="stat-suffix">+</div>
+          <p>Portfolios Generated</p>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-number" data-target="95">0</div>
+          <div class="stat-suffix">%</div>
+          <p>User Satisfaction</p>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-number" data-target="30">0</div>
+          <div class="stat-suffix">sec</div>
+          <p>Average Setup Time</p>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-number" data-target="100">0</div>
+          <div class="stat-suffix">+</div>
+          <p>Countries Served</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-label fade-up">Testimonials</div>
+      <h2 class="section-title fade-up">Loved by Professionals</h2>
+      <p class="section-sub fade-up">See what our users have to say</p>
+
+      <div class="testimonials-track" id="testimonialsTrack">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"I uploaded my resume and had a stunning portfolio in under a minute. Shared the link with three recruiters that same day and got callbacks from all of them."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SK</div>
+            <div>
+              <strong>Sarah Kim</strong>
+              <span>Product Designer at Figma</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"As a developer, I always procrastinated on building my portfolio. Instant Portfolio solved that in 30 seconds. The result looks custom-built."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MR</div>
+            <div>
+              <strong>Marcus Rivera</strong>
+              <span>Software Engineer at Stripe</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"The shareable link feature is a game-changer. I added it to my LinkedIn and email signature. My portfolio views went up by 400%."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AL</div>
+            <div>
+              <strong>Aisha Larsson</strong>
+              <span>Marketing Lead at Notion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-dots" id="testimonialDots">
+        <button class="dot active" data-index="0"></button>
+        <button class="dot" data-index="1"></button>
+        <button class="dot" data-index="2"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section faq-section" id="faq">
+    <div class="container">
+      <div class="section-label fade-up">FAQ</div>
+      <h2 class="section-title fade-up">Common Questions</h2>
+      <p class="section-sub fade-up">Everything you need to know</p>
+
+      <div class="faq-list">
+        <div class="faq-item fade-up">
+          <button class="faq-question">
+            <span>How does Instant Portfolio work?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Simply upload your resume in PDF or DOCX format. Our AI extracts your information — skills, experience, projects, and contact details — and generates a professional portfolio website with a unique shareable link, all in under 30 seconds.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up">
+          <button class="faq-question">
+            <span>Is my resume secure?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely. Your resume data is encrypted during upload and processing. We never share your personal information with third parties. You maintain full control over your data and can delete it at any time.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up">
+          <button class="faq-question">
+            <span>Can I customize my portfolio?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! After generation, you can choose from multiple themes, adjust colors, reorder sections, and edit any content directly. Your portfolio is fully customizable while still being easy to manage.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up">
+          <button class="faq-question">
+            <span>Do I need coding skills?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Not at all. Instant Portfolio is designed for everyone — designers, marketers, engineers, students, and anyone who wants a professional online presence. If you can upload a file, you can create a portfolio.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up">
+          <button class="faq-question">
+            <span>Can I update my portfolio later?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Of course. Just upload your updated resume and your portfolio refreshes automatically. Your shareable link stays the same, so anyone with the link always sees your latest version.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="section pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-label fade-up">Pricing</div>
+      <h2 class="section-title fade-up">Simple, Transparent Pricing</h2>
+      <p class="section-sub fade-up">Start for free. Upgrade when you need more power.</p>
+
+      <div class="pricing-grid">
+        <!-- Free -->
+        <div class="pricing-card fade-up">
+          <div class="pricing-tier">Free</div>
+          <div class="pricing-price"><span>$</span>0</div>
+          <div class="pricing-period">forever free</div>
+          <p class="pricing-desc">Perfect for getting started. Build your first portfolio and share it with the world.</p>
+          <ul class="pricing-features">
+            <li><span class="feat-check">✓</span> 1 Active Portfolio</li>
+            <li><span class="feat-check">✓</span> 3 Basic Templates</li>
+            <li><span class="feat-check">✓</span> Instant Portfolio Link</li>
+            <li><span class="feat-check">✓</span> Subdomain Hosting</li>
+            <li><span class="feat-check">✓</span> Basic Analytics</li>
+            <li class="disabled"><span class="feat-check">—</span> Custom Domain</li>
+            <li class="disabled"><span class="feat-check">—</span> Priority Support</li>
+          </ul>
+          <a href="signup.html" class="btn btn-ghost">Get Started Free</a>
+        </div>
+
+        <!-- Pro -->
+        <div class="pricing-card featured fade-up">
+          <div class="pricing-badge">✦ Most Popular</div>
+          <div class="pricing-tier">Pro</div>
+          <div class="pricing-price"><span>$</span>9</div>
+          <div class="pricing-period">per month</div>
+          <p class="pricing-desc">For professionals who want more templates, custom domains, and deeper insights.</p>
+          <ul class="pricing-features">
+            <li><span class="feat-check">✓</span> 5 Active Portfolios</li>
+            <li><span class="feat-check">✓</span> All 12+ Templates</li>
+            <li><span class="feat-check">✓</span> Custom Domain Support</li>
+            <li><span class="feat-check">✓</span> Advanced Analytics</li>
+            <li><span class="feat-check">✓</span> One-Click Updates</li>
+            <li><span class="feat-check">✓</span> Priority Email Support</li>
+            <li class="disabled"><span class="feat-check">—</span> Team Dashboard</li>
+          </ul>
+          <a href="signup.html" class="btn btn-primary">
+            <span class="btn-glow"></span>
+            Start Pro Trial
+          </a>
+        </div>
+
+        <!-- Team -->
+        <div class="pricing-card fade-up">
+          <div class="pricing-tier">Team</div>
+          <div class="pricing-price"><span>$</span>29</div>
+          <div class="pricing-period">per month</div>
+          <p class="pricing-desc">For teams and agencies managing portfolios at scale with full white-label control.</p>
+          <ul class="pricing-features">
+            <li><span class="feat-check">✓</span> Unlimited Portfolios</li>
+            <li><span class="feat-check">✓</span> All Templates + Custom</li>
+            <li><span class="feat-check">✓</span> Multiple Custom Domains</li>
+            <li><span class="feat-check">✓</span> Team Dashboard</li>
+            <li><span class="feat-check">✓</span> Custom Branding &amp; White-label</li>
+            <li><span class="feat-check">✓</span> API Access</li>
+            <li><span class="feat-check">✓</span> Dedicated Account Manager</li>
+          </ul>
+          <a href="signup.html" class="btn btn-ghost">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="section cta-section" id="cta">
+    <div class="cta-bg">
+      <div class="cta-orb cta-orb--1"></div>
+      <div class="cta-orb cta-orb--2"></div>
+    </div>
+    <div class="container cta-content">
+      <h2 class="cta-title fade-up">Ready to Build Your Portfolio<br><span class="gradient-text">in Seconds?</span></h2>
+      <p class="cta-sub fade-up">Join thousands of professionals who landed their dream opportunities with Instant Portfolio.</p>
+      <div class="cta-actions fade-up">
+        <a href="#upload" class="btn btn-primary btn-lg">
+          <span class="btn-glow"></span>
+          Generate My Portfolio
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#how-it-works" class="btn btn-ghost btn-lg">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-icon">&#9670;</span>
+            <span>Instant<span class="logo-accent">Portfolio</span></span>
+          </a>
+          <p>Transform your resume into a stunning portfolio website in seconds. The fastest way to build your professional presence online.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#templates">Templates</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="#">Blog</a>
+          <a href="terms.html">Terms &amp; Conditions</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="dpa.html">Data Protection Act</a>
+        </div>
+        <div class="footer-links">
+          <h4>Account</h4>
+          <a href="login.html">Log In</a>
+          <a href="signup.html">Sign Up Free</a>
+          <a href="mailto:hello@instantportfolio.com">Support</a>
+          <a href="#">Feature Request</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Instant Portfolio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FULL-SCREEN PORTFOLIO GENERATOR LOADER ===== -->
+  <div class="fsl" id="fsl" role="status" aria-label="Building your portfolio">
+
+    <!-- Ambient background -->
+    <div class="fsl-bg" aria-hidden="true">
+      <div class="fsl-orb" style="--ox:12%;--oy:8%;--os:700px;--oc:#f43f5e;--od:0s"></div>
+      <div class="fsl-orb" style="--ox:80%;--oy:75%;--os:580px;--oc:#fb923c;--od:-4s"></div>
+      <div class="fsl-orb" style="--ox:65%;--oy:12%;--os:440px;--oc:#6c63ff;--od:-8s"></div>
+      <div class="fsl-grid-pat"></div>
+      <canvas id="fslCanvas"></canvas>
+    </div>
+
+    <!-- Scrollable center column -->
+    <div class="fsl-scroll">
+
+      <!-- Main glassmorphism panel -->
+      <div class="fsl-panel">
+
+        <!-- Brand / Logo -->
+        <div class="fsl-brand">
+          <div class="fsl-brand-aura"></div>
+          <div class="fsl-brand-core">
+            <span class="fsl-diamond" aria-hidden="true">◈</span>
+            <span class="fsl-brand-wordmark">Instant<em>Portfolio</em></span>
+          </div>
+        </div>
+
+        <!-- Eyebrow + Heading -->
+        <p class="fsl-eyebrow">AI Portfolio Builder</p>
+        <h2 class="fsl-heading">Generating Your Portfolio</h2>
+
+        <!-- Rotating AI status message -->
+        <div class="fsl-ai-row" aria-live="polite" aria-atomic="true">
+          <span class="fsl-ai-beacon" aria-hidden="true"></span>
+          <span class="fsl-ai-msg" id="fslAiMsg">Reading resume content...</span>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="fsl-prog-wrap">
+          <div class="fsl-prog-rail">
+            <div class="fsl-prog-fill" id="fslProgFill">
+              <div class="fsl-prog-gleam" aria-hidden="true"></div>
+            </div>
+          </div>
+          <span class="fsl-prog-pct" id="fslProgPct" aria-label="0 percent complete">0%</span>
+        </div>
+
+        <!-- Step checklist -->
+        <ul class="fsl-checklist" id="fslChecklist" role="list" aria-label="Generation steps">
+          <li class="fsl-step" data-state="pending" data-i="0">
+            <div class="fsl-step-ic" aria-hidden="true"></div>
+            <span class="fsl-step-lbl">Resume Uploaded</span>
+          </li>
+          <li class="fsl-step" data-state="pending" data-i="1">
+            <div class="fsl-step-ic" aria-hidden="true"></div>
+            <span class="fsl-step-lbl">Extracting Information</span>
+          </li>
+          <li class="fsl-step" data-state="pending" data-i="2">
+            <div class="fsl-step-ic" aria-hidden="true"></div>
+            <span class="fsl-step-lbl">Analysing Skills</span>
+          </li>
+          <li class="fsl-step" data-state="pending" data-i="3">
+            <div class="fsl-step-ic" aria-hidden="true"></div>
+            <span class="fsl-step-lbl">Creating Portfolio Design</span>
+          </li>
+          <li class="fsl-step" data-state="pending" data-i="4">
+            <div class="fsl-step-ic" aria-hidden="true"></div>
+            <span class="fsl-step-lbl">Generating Personal URL</span>
+          </li>
+        </ul>
+
+        <!-- Estimated time -->
+        <p class="fsl-eta">Estimated time: <strong><span id="fslEta">8</span> seconds</strong></p>
+      </div>
+
+      <!-- Portfolio skeleton preview -->
+      <div class="fsl-skel-wrap" aria-hidden="true">
+        <p class="fsl-skel-label">Portfolio Preview</p>
+        <div class="fsl-skel-card">
+          <div class="fsl-skel-hdr">
+            <div class="fsl-skel-av sw"></div>
+            <div class="fsl-skel-info">
+              <div class="fsl-skel-ln sw" style="width:56%"></div>
+              <div class="fsl-skel-ln sw" style="width:38%"></div>
+            </div>
+            <div class="fsl-skel-badge sw"></div>
+          </div>
+          <div class="fsl-skel-hr sw"></div>
+          <div class="fsl-skel-chips">
+            <div class="fsl-skel-chip sw"></div>
+            <div class="fsl-skel-chip sw"></div>
+            <div class="fsl-skel-chip sw"></div>
+            <div class="fsl-skel-chip sw"></div>
+            <div class="fsl-skel-chip sw"></div>
+          </div>
+          <div class="fsl-skel-projs">
+            <div class="fsl-skel-proj sw"></div>
+            <div class="fsl-skel-proj sw"></div>
+            <div class="fsl-skel-proj sw"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /fsl-scroll -->
+  </div><!-- /fsl -->
+
+  <!-- ===== AI IMPROVEMENT MODAL ===== -->
+  <div class="modal-overlay hidden" id="aiImproveModal">
+    <div class="modal-card modal-card-wide">
+      <div class="modal-header">
+        <div class="modal-icon" style="background:linear-gradient(135deg,#6c63ff,#f43f5e)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h2 class="modal-title">AI Resume Improvement</h2>
+        <p class="modal-subtitle">Smart suggestions to boost your portfolio and ATS score</p>
+      </div>
+      <div class="ai-improve-body modal-scroll">
+        <div class="ai-improve-section">
+          <div class="ai-improve-sec-header">
+            <span class="ai-improve-badge" style="background:rgba(244,63,94,0.15);color:var(--accent)">Summary</span>
+            <span class="ai-improve-impact">+8 pts</span>
+          </div>
+          <p class="ai-improve-current">Current: <em>"Passionate developer with experience..."</em></p>
+          <div class="ai-improve-suggestion">
+            <div class="ai-improve-sug-label">AI Suggestion</div>
+            <p>Results-driven Full-Stack Engineer with 8+ years delivering high-performance web platforms. Specialised in React, Node.js, and AWS — built systems serving 2M+ users and cutting deployment cycles by 75%.</p>
+            <button class="btn btn-primary btn-sm apply-suggestion-btn"><span class="btn-glow"></span>Apply This</button>
+          </div>
+        </div>
+        <div class="ai-improve-section">
+          <div class="ai-improve-sec-header">
+            <span class="ai-improve-badge" style="background:rgba(108,99,255,0.15);color:#6c63ff">Skills</span>
+            <span class="ai-improve-impact">+5 pts</span>
+          </div>
+          <p class="ai-improve-current">Missing high-demand skills detected in your resume</p>
+          <div class="ai-improve-suggestion">
+            <div class="ai-improve-sug-label">Recommended Additions</div>
+            <div class="ai-improve-tags">
+              <span class="ai-tag">System Design</span><span class="ai-tag">Microservices</span>
+              <span class="ai-tag">Redis</span><span class="ai-tag">Terraform</span><span class="ai-tag">ElasticSearch</span>
+            </div>
+            <button class="btn btn-primary btn-sm apply-suggestion-btn"><span class="btn-glow"></span>Add All Skills</button>
+          </div>
+        </div>
+        <div class="ai-improve-section">
+          <div class="ai-improve-sec-header">
+            <span class="ai-improve-badge" style="background:rgba(0,212,170,0.15);color:#00d4aa">Experience</span>
+            <span class="ai-improve-impact">+12 pts</span>
+          </div>
+          <p class="ai-improve-current">Experience bullets lack quantifiable metrics</p>
+          <div class="ai-improve-suggestion">
+            <div class="ai-improve-sug-label">Enhanced Bullet Points</div>
+            <ul class="ai-improve-bullets">
+              <li>Architected microservices platform reducing latency by 60% and handling 2M+ concurrent users</li>
+              <li>Led cross-functional team of 8 engineers, delivering 15 features on schedule with zero critical bugs</li>
+              <li>Implemented CI/CD pipeline cutting release cycle from 2 weeks to 48 hours</li>
+            </ul>
+            <button class="btn btn-primary btn-sm apply-suggestion-btn"><span class="btn-glow"></span>Apply All</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="aiImproveCloseBtn">Close</button>
+        <button class="btn btn-primary" id="applyAllImprovementsBtn"><span class="btn-glow"></span>Apply All Suggestions</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ANALYTICS MODAL ===== -->
+  <div class="modal-overlay hidden" id="analyticsModal">
+    <div class="modal-card modal-card-wide">
+      <div class="modal-header">
+        <div class="modal-icon" style="background:linear-gradient(135deg,#00d4aa,#6c63ff)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h2 class="modal-title">Analytics Dashboard</h2>
+        <p class="modal-subtitle">Track your portfolio performance and visitor insights</p>
+      </div>
+      <div class="analytics-body">
+        <div class="analytics-stats-row">
+          <div class="analytics-stat"><div class="analytics-stat-num">2,847</div><div class="analytics-stat-lbl">Total Views</div><div class="analytics-stat-change up">↑ 23%</div></div>
+          <div class="analytics-stat"><div class="analytics-stat-num">1,203</div><div class="analytics-stat-lbl">Unique Visitors</div><div class="analytics-stat-change up">↑ 18%</div></div>
+          <div class="analytics-stat"><div class="analytics-stat-num">4m 32s</div><div class="analytics-stat-lbl">Avg. Time on Page</div><div class="analytics-stat-change up">↑ 12%</div></div>
+          <div class="analytics-stat"><div class="analytics-stat-num">34.2%</div><div class="analytics-stat-lbl">Click-Through Rate</div><div class="analytics-stat-change down">↓ 3%</div></div>
+        </div>
+        <div class="analytics-chart-wrap">
+          <div class="analytics-chart-title">Portfolio Views — Last 7 Days</div>
+          <div class="analytics-bar-chart">
+            <div class="analytics-bar-item"><div class="analytics-bar" style="height:45%"></div><span>Mon</span></div>
+            <div class="analytics-bar-item"><div class="analytics-bar" style="height:62%"></div><span>Tue</span></div>
+            <div class="analytics-bar-item"><div class="analytics-bar" style="height:38%"></div><span>Wed</span></div>
+            <div class="analytics-bar-item"><div class="analytics-bar" style="height:88%"></div><span>Thu</span></div>
+            <div class="analytics-bar-item"><div class="analytics-bar" style="height:72%"></div><span>Fri</span></div>
+            <div class="analytics-bar-item"><div class="analytics-bar" style="height:95%"></div><span>Sat</span></div>
+            <div class="analytics-bar-item"><div class="analytics-bar analytics-bar-today" style="height:60%"></div><span>Sun</span></div>
+          </div>
+        </div>
+        <div class="analytics-bottom-row">
+          <div class="analytics-table-wrap">
+            <div class="analytics-table-title">Top Referrers</div>
+            <table class="analytics-table">
+              <tr><td>LinkedIn</td><td>842</td><td class="analytics-pct">42%</td></tr>
+              <tr><td>GitHub</td><td>423</td><td class="analytics-pct">21%</td></tr>
+              <tr><td>Direct</td><td>380</td><td class="analytics-pct">19%</td></tr>
+              <tr><td>Twitter / X</td><td>214</td><td class="analytics-pct">11%</td></tr>
+              <tr><td>Other</td><td>141</td><td class="analytics-pct">7%</td></tr>
+            </table>
+          </div>
+          <div class="analytics-table-wrap">
+            <div class="analytics-table-title">Top Countries</div>
+            <table class="analytics-table">
+              <tr><td>🇺🇸 United States</td><td>892</td><td class="analytics-pct">44%</td></tr>
+              <tr><td>🇬🇧 United Kingdom</td><td>302</td><td class="analytics-pct">15%</td></tr>
+              <tr><td>🇮🇳 India</td><td>280</td><td class="analytics-pct">14%</td></tr>
+              <tr><td>🇨🇦 Canada</td><td>195</td><td class="analytics-pct">10%</td></tr>
+              <tr><td>🌍 Other</td><td>178</td><td class="analytics-pct">17%</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:flex-end">
+        <button class="btn btn-ghost" id="analyticsCloseBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEO MODAL ===== -->
+  <div class="modal-overlay hidden" id="seoModal">
+    <div class="modal-card modal-card-wide">
+      <div class="modal-header">
+        <div class="modal-icon" style="background:linear-gradient(135deg,#ff6b35,#ffd700)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <h2 class="modal-title">SEO Optimization</h2>
+        <p class="modal-subtitle">Auto-generated meta tags to boost your portfolio's search visibility</p>
+      </div>
+      <div class="seo-body">
+        <div class="seo-score-row">
+          <div class="seo-score-item good"><span>87</span><label>SEO Score</label></div>
+          <div class="seo-score-item good"><span>✓</span><label>Meta Title</label></div>
+          <div class="seo-score-item good"><span>✓</span><label>OG Tags</label></div>
+          <div class="seo-score-item warn"><span>!</span><label>Schema.org</label></div>
+        </div>
+        <div class="seo-meta-block">
+          <div class="seo-meta-label">HTML Meta Tags</div>
+          <div class="seo-code-wrap">
+            <pre class="seo-code" id="seoMetaCode">&lt;title&gt;John Doe — Senior Full-Stack Developer | Portfolio&lt;/title&gt;
+&lt;meta name="description" content="Senior Full-Stack Developer with 8+ years building scalable web apps. React, Node.js, AWS. Available for hire."&gt;
+&lt;meta name="keywords" content="Full-Stack Developer, React, Node.js, AWS, Portfolio, Software Engineer"&gt;
+&lt;link rel="canonical" href="https://instantportfolio.com/john-doe"&gt;</pre>
+            <button class="seo-copy-btn" data-target="seoMetaCode">Copy</button>
+          </div>
+        </div>
+        <div class="seo-meta-block">
+          <div class="seo-meta-label">Open Graph (Social Preview)</div>
+          <div class="seo-code-wrap">
+            <pre class="seo-code" id="seoOgCode">&lt;meta property="og:title" content="John Doe — Senior Full-Stack Developer"&gt;
+&lt;meta property="og:description" content="8+ years building scalable web apps. View my portfolio."&gt;
+&lt;meta property="og:type" content="website"&gt;
+&lt;meta property="og:url" content="https://instantportfolio.com/john-doe"&gt;
+&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:creator" content="@johndoe"&gt;</pre>
+            <button class="seo-copy-btn" data-target="seoOgCode">Copy</button>
+          </div>
+        </div>
+        <div class="seo-meta-block">
+          <div class="seo-meta-label">Schema.org JSON-LD</div>
+          <div class="seo-code-wrap">
+            <pre class="seo-code" id="seoSchemaCode">{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "John Doe",
+  "jobTitle": "Senior Full-Stack Developer",
+  "url": "https://instantportfolio.com/john-doe",
+  "sameAs": ["https://linkedin.com/in/johndoe","https://github.com/johndoe"]
+}</pre>
+            <button class="seo-copy-btn" data-target="seoSchemaCode">Copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:flex-end">
+        <button class="btn btn-ghost" id="seoCloseBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CUSTOM DOMAIN MODAL ===== -->
+  <div class="modal-overlay hidden" id="customDomainModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h2 class="modal-title">Custom Domain</h2>
+        <p class="modal-subtitle">Connect your own domain to your portfolio</p>
+      </div>
+      <div class="domain-body">
+        <div class="domain-current">
+          <span class="domain-label">Current URL</span>
+          <span class="domain-url">instantportfolio.com/john-doe</span>
+          <span class="domain-badge-free">Free Plan</span>
+        </div>
+        <div class="domain-input-group">
+          <label>Your Custom Domain</label>
+          <div class="domain-input-wrap">
+            <input type="text" id="customDomainInput" placeholder="yourname.com" class="domain-input">
+            <button class="btn btn-primary btn-sm" id="connectDomainBtn"><span class="btn-glow"></span>Connect</button>
+          </div>
+          <p class="domain-hint">e.g. johndoe.com or portfolio.johndoe.com</p>
+        </div>
+        <div class="domain-dns-block">
+          <div class="domain-dns-title">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            DNS Configuration
+          </div>
+          <table class="dns-table">
+            <thead><tr><th>Type</th><th>Host</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>A</td><td>@</td><td>76.76.21.21</td></tr>
+              <tr><td>CNAME</td><td>www</td><td>cname.instantportfolio.com</td></tr>
+            </tbody>
+          </table>
+          <p class="dns-note">DNS changes may take 24–48 hours to propagate globally.</p>
+        </div>
+        <div class="domain-upgrade-note">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Custom domains require <a href="#pricing" class="modal-link">Pro plan</a> ($9/mo). Includes free SSL.
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:flex-end;gap:10px">
+        <button class="btn btn-ghost" id="customDomainCloseBtn">Cancel</button>
+        <a href="signup.html" class="btn btn-primary"><span class="btn-glow"></span>Upgrade to Pro</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LINKEDIN IMPORT MODAL ===== -->
+  <div class="modal-overlay hidden" id="linkedinModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-icon" style="background:#0077b5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <h2 class="modal-title">Import from LinkedIn</h2>
+        <p class="modal-subtitle">Automatically populate your portfolio with your LinkedIn profile data</p>
+      </div>
+      <div class="linkedin-import-body">
+        <div class="linkedin-import-steps">
+          <div class="li-step"><div class="li-step-num">1</div><div>Connect your LinkedIn account via secure OAuth</div></div>
+          <div class="li-step"><div class="li-step-num">2</div><div>We import your headline, experience, education, and skills</div></div>
+          <div class="li-step"><div class="li-step-num">3</div><div>Your portfolio auto-populates — review and publish in seconds</div></div>
+        </div>
+        <div class="linkedin-import-data">
+          <div class="li-data-label">What we import:</div>
+          <div class="li-data-tags">
+            <span>Profile Photo</span><span>Headline</span><span>About</span>
+            <span>Experience</span><span>Education</span><span>Skills</span><span>Certifications</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:space-between">
+        <button class="btn btn-ghost" id="linkedinModalCloseBtn">Cancel</button>
+        <button class="btn-linkedin-primary" id="linkedinOAuthBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Connect LinkedIn
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== AI PORTFOLIO CHATBOT ===== -->
+  <div class="chatbot-widget" id="chatbotWidget">
+    <div class="chatbot-panel hidden" id="chatbotPanel">
+      <div class="chatbot-panel-header">
+        <div class="chatbot-ai-avatar">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <strong>AI Portfolio Assistant</strong>
+          <span class="chatbot-status">Online · Instant replies</span>
+        </div>
+        <button class="chatbot-close-btn" id="chatbotCloseBtn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="chatbot-msg bot">
+          <div class="chatbot-bubble">Hi! I'm your AI Portfolio Assistant. Ask me about skills, experience, projects, or availability!</div>
+        </div>
+      </div>
+      <div class="chatbot-quick-replies" id="chatbotQuickReplies">
+        <button class="chatbot-quick-btn">What are your skills?</button>
+        <button class="chatbot-quick-btn">Are you available?</button>
+        <button class="chatbot-quick-btn">Show projects</button>
+        <button class="chatbot-quick-btn">Contact info</button>
+      </div>
+      <div class="chatbot-input-row">
+        <input type="text" id="chatbotInput" placeholder="Ask me anything..." class="chatbot-input">
+        <button class="chatbot-send-btn" id="chatbotSendBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+    <button class="chatbot-fab" id="chatbotFab" title="Chat with AI Assistant">
+      <svg class="chatbot-fab-icon chatbot-icon-chat" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <svg class="chatbot-fab-icon chatbot-icon-close hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <span class="chatbot-notif-dot" id="chatbotNotifDot"></span>
+    </button>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!-- @Instant001 -->
+ <!-- qAE7bQFOcply61Qe -->

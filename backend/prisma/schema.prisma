@@ -1,0 +1,128 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String      @id @default(auto()) @map("_id") @db.ObjectId
+  firstName    String
+  lastName     String
+  email        String      @unique
+  passwordHash String
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  resumes      Resume[]
+  portfolios   Portfolio[]
+}
+
+model Resume {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String     @db.ObjectId
+  fileName      String
+  filePath      String
+  fileType      String
+  fileSize      Int
+  extractedText String?
+  extractedData Json?
+  uploadedAt    DateTime   @default(now())
+  user          User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  portfolio     Portfolio?
+}
+
+model Portfolio {
+  id             String          @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String          @db.ObjectId
+  resumeId       String          @unique @db.ObjectId
+  slug           String          @unique
+  fullName       String?
+  headline       String?
+  summary        String?
+  profileImage   String?
+  email          String?
+  phone          String?
+  location       String?
+  github         String?
+  linkedin       String?
+  website        String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resume         Resume          @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  skills         Skill[]
+  experiences    Experience[]
+  educations     Education[]
+  projects       Project[]
+  certifications Certification[]
+  socialLinks    SocialLink[]
+  analytics      Analytics?
+}
+
+model Skill {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  portfolioId String    @db.ObjectId
+  name        String
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+}
+
+model Experience {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  portfolioId String    @db.ObjectId
+  company     String?
+  role        String?
+  startDate   String?
+  endDate     String?
+  description String?
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+}
+
+model Education {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  portfolioId String    @db.ObjectId
+  institution String?
+  degree      String?
+  field       String?
+  startDate   String?
+  endDate     String?
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  portfolioId String    @db.ObjectId
+  title       String?
+  description String?
+  githubUrl   String?
+  liveUrl     String?
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+}
+
+model Certification {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  portfolioId String    @db.ObjectId
+  name        String?
+  issuer      String?
+  issueDate   String?
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+}
+
+model SocialLink {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  portfolioId String    @db.ObjectId
+  platform    String?
+  url         String?
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+}
+
+model Analytics {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  portfolioId  String    @unique @db.ObjectId
+  totalViews   Int       @default(0)
+  uniqueViews  Int       @default(0)
+  lastViewedAt DateTime?
+  portfolio    Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+}
