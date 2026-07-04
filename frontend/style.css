@@ -3798,3 +3798,21 @@ ul{list-style:none}
   box-shadow: 0 0 0 3px var(--glow);
   transform: scale(1.08);
 }
+
+/* ---- ATS real-analysis findings (mistake + fix pairs) ---- */
+.ats-tips-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.45;
+}
+.ats-tips-list li svg { flex-shrink: 0; margin-top: 3px; }
+.ats-tips-list li strong { color: var(--text-bright); font-weight: 600; }
+
+/* ---- LinkedIn modal honesty note ---- */
+.li-data-note {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}

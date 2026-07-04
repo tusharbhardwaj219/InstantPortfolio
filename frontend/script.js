@@ -374,11 +374,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return { name, title, email, phone, location, about, skills };
   }
 
+  // Raw text + parsed fields of the last uploaded resume — fuels the real
+  // ATS analysis (js/ats.js) once the portfolio is generated.
+  let lastResumeAnalysis = null;
+
   async function autoParseResume(file) {
     const statusEl = document.getElementById('resumeParseStatus');
     const msgEl    = document.getElementById('resumeParseMsg');
     const genBtn   = document.getElementById('detailsGenerateBtn');
 
+    lastResumeAnalysis = null;
     if (statusEl) { statusEl.classList.remove('hidden', 'success'); }
     if (msgEl)    msgEl.textContent = 'Reading your resume…';
     if (genBtn)   genBtn.disabled = true;
@@ -389,6 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (msgEl) msgEl.textContent = 'Extracting your information…';
       const parsed = parseResumeText(text);
+      lastResumeAnalysis = { text, parsed };
 
       /* Pre-fill form fields (only empty fields, never overwrite what user typed) */
       const set = (id, val) => {
@@ -1206,46 +1212,104 @@ document.addEventListener('DOMContentLoaded', () => {
     linkedinImportBtn.addEventListener('click', () => openModal(linkedinModal));
   }
   if (linkedinOAuthBtn) {
-    linkedinOAuthBtn.addEventListener('click', () => {
+    // Real OAuth: hand the browser to the backend, which redirects to
+    // LinkedIn's consent screen and comes back with the profile.
+    linkedinOAuthBtn.addEventListener('click', async () => {
       closeModal(linkedinModal);
-      showToast('LinkedIn profile imported — verify your details below.');
-      setTimeout(() => {
-        // Pre-fill details form with mock LinkedIn data for the user to confirm
-        const dfName = document.getElementById('dfName');
-        const dfTitle = document.getElementById('dfTitle');
-        const dfEmail = document.getElementById('dfEmail');
-        const dfLocation = document.getElementById('dfLocation');
-        const dfAbout = document.getElementById('dfAbout');
-        const dfSkillsEl = document.getElementById('dfSkills');
-        if (dfName) dfName.value = '';
-        if (dfTitle) dfTitle.value = '';
-        if (dfEmail) dfEmail.value = '';
-        if (dfLocation) dfLocation.value = '';
-        if (dfAbout) dfAbout.value = '';
-        if (dfSkillsEl) dfSkillsEl.value = '';
-        if (dfSkillPreview) dfSkillPreview.innerHTML = '';
+      if (window.IP_API && await IP_API.isBackendUp()) {
+        window.location.href = `${IP_API.API_BASE}/api/linkedin/auth`;
+      } else {
+        showToast('LinkedIn import needs the backend running on port 5000 (and LinkedIn API keys in backend/.env).', 'error');
+      }
+    });
+  }
+
+  /* Returning from LinkedIn: the profile arrives in the URL fragment
+     (#liimport=<base64 json>) — fragments never leave the browser. */
+  (function handleLinkedinReturn() {
+    const h = window.location.hash || '';
+    if (h.startsWith('#liimport=')) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+      let data = null;
+      try {
+        const b64 = h.slice('#liimport='.length).replace(/-/g, '+').replace(/_/g, '/');
+        data = JSON.parse(atob(b64));
+      } catch { /* corrupted payload — fall through */ }
+      if (data) {
+        const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
+        set('dfName', data.name);
+        set('dfEmail', data.email);
         if (detailsFileName) detailsFileName.textContent = 'LinkedIn Profile';
         uploadCard.classList.add('hidden');
         const liSec = document.getElementById('linkedinImportSec');
         if (liSec) liSec.classList.add('hidden');
-        if (detailsCard) detailsCard.classList.remove('hidden');
-        if (dfName) dfName.focus();
-      }, 1400);
-    });
-  }
+        if (detailsCard) {
+          detailsCard.classList.remove('hidden');
+          detailsCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        showToast(`LinkedIn connected — welcome, ${escapeHtml(data.name || 'there')}! LinkedIn shares name, email & photo; fill in the rest below.`);
+      } else {
+        showToast('LinkedIn import failed — please try again.', 'error');
+      }
+    } else if (h.startsWith('#lierror=')) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+      const code = decodeURIComponent(h.slice('#lierror='.length));
+      const msgs = {
+        not_configured: 'LinkedIn import is not configured yet — add LINKEDIN_CLIENT_ID and LINKEDIN_CLIENT_SECRET to backend/.env (setup steps are in that file).',
+        bad_state: 'LinkedIn sign-in expired — please try again.',
+        user_cancelled_login: 'LinkedIn sign-in was cancelled.',
+        user_cancelled_authorize: 'LinkedIn sign-in was cancelled.',
+      };
+      showToast(msgs[code] || 'LinkedIn import failed — please try again.', 'error');
+    }
+  })();
 
   /* ---------- SHOW PORTFOLIO TOOLS WHEN PREVIEW APPEARS ---------- */
   const pfActionRow = document.getElementById('pfActionRow');
   const atsCard     = document.getElementById('atsCard');
   const portfolioPreviewEl = document.getElementById('portfolioPreview');
 
+  /** Fill the ATS card with a REAL analysis of the uploaded resume. */
+  function renderAtsCard(r) {
+    const heading = document.getElementById('atsHeading');
+    if (heading) heading.textContent = r.headline;
+
+    const catLabels = { keywords: 'keywords', formatting: 'formatting', structure: 'structure', contact: 'contact' };
+    Object.keys(catLabels).forEach(cat => {
+      const item = atsCard.querySelector(`.ats-cat-item[data-cat="${cat}"]`);
+      if (!item) return;
+      const v = r.categories[cat];
+      item.querySelector('.ats-cat-pct').textContent = v + '%';
+      item.querySelector('.ats-cat-fill').dataset.w = v;
+    });
+
+    const scoreNum = document.getElementById('atsScoreNum');
+    const ringFill = document.getElementById('atsRingFill');
+    if (scoreNum) scoreNum.textContent = r.score;
+    if (ringFill) ringFill.style.strokeDashoffset = Math.round(314 * (1 - r.score / 100));
+
+    const grade = document.getElementById('atsGradeBadge');
+    if (grade) grade.textContent = r.grade;
+
+    // Mistakes (with fixes) first, then confirmed strengths
+    const tips = document.getElementById('atsTipsList');
+    if (tips) {
+      const warn = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2.5"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>';
+      const ok = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00d4aa" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+      tips.innerHTML =
+        r.issues.map(i => `<li>${warn}<span><strong>${escapeHtml(i.title)}.</strong> ${escapeHtml(i.fix)}</span></li>`).join('') +
+        r.wins.map(w => `<li>${ok}<span>${escapeHtml(w)}</span></li>`).join('');
+    }
+  }
+
   function revealPortfolioTools() {
     if (pfActionRow) pfActionRow.classList.remove('hidden');
-    // Animate ATS card in after a short delay
-    if (atsCard) {
+    // The ATS card only appears when there is a real resume to analyze —
+    // manual/LinkedIn entries have no document to score.
+    if (atsCard && window.IP_ATS && lastResumeAnalysis) {
+      renderAtsCard(IP_ATS.analyze(lastResumeAnalysis));
       atsCard.classList.remove('hidden');
       setTimeout(() => {
-        // Animate bars
         atsCard.querySelectorAll('.ats-cat-fill').forEach(fill => {
           fill.style.width = fill.dataset.w + '%';
         });

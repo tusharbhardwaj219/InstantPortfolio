@@ -14,6 +14,7 @@ const authRoutes      = require('./routes/auth.routes');
 const resumeRoutes    = require('./routes/resume.routes');
 const portfolioRoutes = require('./routes/portfolio.routes');
 const analyticsRoutes = require('./routes/analytics.routes');
+const linkedinRoutes  = require('./routes/linkedin.routes');
 
 const app = express();
 
@@ -97,6 +98,7 @@ app.use('/api/auth',      authLimiter, authRoutes);
 app.use('/api/resume',    resumeRoutes);
 app.use('/api/portfolio', portfolioRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/linkedin',  linkedinRoutes);
 
 // ── 404 handler ───────────────────────────────────────────────────────────────
 app.use((req, res) => {
