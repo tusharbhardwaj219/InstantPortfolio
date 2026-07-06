@@ -14,8 +14,10 @@ const titleRe =
 const sectionHeadingRe =
   /^(?:summary|objective|profile|about me|professional summary|overview|skills?|technical skills?|competencies|technologies|tech stack|tools?|experience|work experience|employment|professional experience|work history|education|academic|qualifications|projects?|personal projects?|side projects?|portfolio|certifications?|certificates?|licenses?|credentials?|social|links?|contact)\s*[:\-]?\s*$/i;
 
+// \b prefix is load-bearing: without it "CodeCamp 2023" matches as the date
+// "deCamp 2023" (dec inside the word), corrupting company/date extraction.
 const monthRe =
-  /(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)/i;
+  /\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)/i;
 
 const dateRe = new RegExp(
   `(?:${monthRe.source}[\\w\\s,]*\\d{4}|\\d{4}\\s*[-–]\\s*(?:\\d{4}|present|current))`,

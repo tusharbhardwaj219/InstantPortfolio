@@ -371,8 +371,167 @@ document.addEventListener('DOMContentLoaded', () => {
       skills = [...new Set(skills)].slice(0, 20);
     }
 
-    return { name, title, email, phone, location, about, skills };
+    /* Links */
+    const ghM = text.match(/github\.com\/([A-Za-z0-9\-._]+)/i);
+    const liM = text.match(/linkedin\.com\/in\/([A-Za-z0-9\-_.]+)/i);
+    const webM = text.match(/https?:\/\/(?!(?:www\.)?(?:linkedin|github))[^\s,<>]+/i);
+    const github = ghM ? `https://github.com/${ghM[1]}` : '';
+    const linkedin = liM ? `https://linkedin.com/in/${liM[1]}` : '';
+    const website = webM ? webM[0].replace(/[.,;)]$/, '') : '';
+
+    /* Deep sections: experience, education, projects, certifications */
+    const sections = splitResumeSections(lines);
+    const experiences = parseExperienceSection(sections.experience || []);
+    const educations = parseEducationSection(sections.education || []);
+    const projects = parseProjectSection(sections.projects || []);
+    const certifications = (sections.certifications || [])
+      .filter(l => l && l.length > 3 && l.length < 120)
+      .slice(0, 6)
+      .map(l => {
+        const m = l.split(/\s+[-–—|]\s+|\s+(?:by|from|issued by)\s+/i);
+        return {
+          name: (m[0] || l).replace(/\s*\(?(19|20)\d{2}\)?\s*$/, '').trim(),
+          issuer: (m[1] || '').replace(/\s*\(?(19|20)\d{2}\)?\s*$/, '').trim(),
+          issueDate: (l.match(/(19|20)\d{2}/) || [''])[0],
+        };
+      });
+
+    return {
+      name, title, email, phone, location, about, skills,
+      github, linkedin, website,
+      experiences, educations, projects, certifications,
+    };
   }
+
+  /* Slice the resume into named sections by their headings. */
+  function splitResumeSections(lines) {
+    const headings = [
+      ['experience', /^(work\s+)?experience|employment|professional experience|work history|internships?$/i],
+      ['education', /^education|academics?( background)?|qualifications?$/i],
+      ['projects', /^(personal |academic |key )?projects?|portfolio$/i],
+      ['certifications', /^certifications?|certificates?|licenses?|credentials?|achievements?|awards?$/i],
+      ['skills', /^(technical )?skills?|technologies|tech stack|tools?$/i],
+      ['summary', /^summary|objective|profile|about me|overview$/i],
+      ['other', /^languages?|interests?|hobbies|declaration|references?|contact$/i],
+    ];
+    const out = {};
+    let current = null;
+    for (const raw of lines) {
+      const line = raw.replace(/[:\-–]\s*$/, '').trim();
+      const hit = line.length <= 40 && headings.find(([, re]) => re.test(line));
+      if (hit) { current = hit[0]; out[current] = out[current] || []; continue; }
+      if (current) out[current].push(raw);
+    }
+    return out;
+  }
+
+  // \b before months/years is load-bearing: without it "CodeCamp 2023" parses
+  // as the date "deCamp 2023" (dec + amp), swallowing the company name.
+  const dateRangeRe2 = /(\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s*\d{4}|\b\d{4})\s*[-–—]\s*((?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s*\d{4}|\d{4}|present|current|ongoing)\b/i;
+  const roleRe = /\b(developer|engineer|designer|manager|analyst|scientist|consultant|architect|intern(ship)?|trainee|lead|freelancer?|associate|assistant)\b/i;
+
+  /* Experience: entries anchored on date-range lines. */
+  function parseExperienceSection(sec) {
+    const entries = [];
+    let cur = null;
+    const flush = () => {
+      if (!cur) return;
+      const role = cur.pre.find(l => roleRe.test(l)) || cur.pre[0] || '';
+      const company = cur.pre.find(l => l !== role) || '';
+      const description = cur.desc.join(' ').replace(/\s+/g, ' ').trim().slice(0, 320);
+      if (role || company) entries.push({
+        role: role.slice(0, 90), company: company.slice(0, 90),
+        startDate: cur.start || '', endDate: cur.end || '', description,
+      });
+      cur = null;
+    };
+    for (const raw of sec) {
+      const line = raw.trim();
+      if (!line) { flush(); continue; }
+      const dr = line.match(dateRangeRe2);
+      if (dr) {
+        // A date range starts a new entry (or completes the current header)
+        if (cur && cur.start) flush();
+        cur = cur || { pre: [], desc: [] };
+        cur.start = dr[1]; cur.end = dr[2];
+        const rest = line.replace(dr[0], '').replace(/[|,•·()–—-]+/g, ' ').trim();
+        if (rest && rest.length > 2 && cur.pre.length < 2) cur.pre.push(rest);
+        continue;
+      }
+      if (!cur) cur = { pre: [], desc: [] };
+      // A short non-bullet line after a dated entry with bullets = the next
+      // entry's role line ("Web Development Trainee" after Acme's bullets)
+      const looksHeader = line.length < 60 && !/^[•·\-–]/.test(line) && !/[.!?]$/.test(line);
+      if (cur.start && cur.desc.length && looksHeader) {
+        flush();
+        cur = { pre: [line], desc: [] };
+        continue;
+      }
+      if (cur.pre.length < 2 && !cur.desc.length && line.length < 90 && !/^[•·\-–]/.test(line)) cur.pre.push(line);
+      else cur.desc.push(line.replace(/^[•·\-–]\s*/, ''));
+    }
+    flush();
+    return entries.slice(0, 4);
+  }
+
+  /* Education: entries anchored on degree keywords. */
+  function parseEducationSection(sec) {
+    const degreeRe = /\b(b\.?\s?tech|m\.?\s?tech|bca|mca|b\.?\s?sc|m\.?\s?sc|b\.?\s?com|m\.?\s?com|bba|mba|bachelor|master|phd|diploma|12th|10th|senior secondary|high school|intermediate)\b/i;
+    const instRe = /\b(university|college|institute|school|academy|iit|nit)\b/i;
+    const entries = [];
+    let cur = null;
+    for (const raw of sec) {
+      const line = raw.trim();
+      if (!line) continue;
+      if (degreeRe.test(line)) {
+        if (cur) entries.push(cur);
+        cur = { degree: line.slice(0, 90), institution: '', startDate: '', endDate: '' };
+        const yr = line.match(dateRangeRe2);
+        if (yr) { cur.startDate = yr[1]; cur.endDate = yr[2]; cur.degree = line.replace(yr[0], '').replace(/[|()–—-]+\s*$/, '').trim(); }
+        if (instRe.test(line) && line.length > 40) { cur.institution = line.slice(0, 90); }
+        continue;
+      }
+      if (cur) {
+        const yr = line.match(dateRangeRe2) || line.match(/\b((19|20)\d{2})\b/);
+        if (!cur.institution && instRe.test(line)) cur.institution = line.replace(dateRangeRe2, '').replace(/[|()–—-]+\s*$/, '').trim().slice(0, 90);
+        if (yr && !cur.startDate) { cur.startDate = yr[1]; cur.endDate = (yr[2] && /\d|present/i.test(yr[2])) ? yr[2] : ''; }
+      }
+    }
+    if (cur) entries.push(cur);
+    return entries.slice(0, 3);
+  }
+
+  /* Projects: short title lines followed by description lines. */
+  function parseProjectSection(sec) {
+    const entries = [];
+    let cur = null;
+    for (const raw of sec) {
+      const line = raw.trim();
+      if (!line) { if (cur) { entries.push(cur); cur = null; } continue; }
+      // Resumes often list bare "github.com/user/repo" without a protocol
+      const gh = line.match(/(?:https?:\/\/)?(?:www\.)?github\.com\/[^\s,<>]+/i);
+      const live = line.match(/https?:\/\/(?!(?:www\.)?github)[^\s,<>]+/i);
+      if (cur && gh) { cur.githubUrl = gh[0].startsWith('http') ? gh[0] : 'https://' + gh[0]; continue; }
+      if (cur && live) { cur.liveUrl = live[0]; continue; }
+      const isTitle = line.length <= 60 && !/^[•·\-–]/.test(line) && !/\.$/.test(line);
+      if (isTitle && (!cur || cur.desc.length)) {
+        if (cur) entries.push(cur);
+        cur = { title: line.replace(/[|:–—-]+\s*$/, '').slice(0, 70), desc: [], githubUrl: '', liveUrl: '' };
+      } else if (cur) {
+        cur.desc.push(line.replace(/^[•·\-–]\s*/, ''));
+      } else {
+        cur = { title: line.slice(0, 70), desc: [], githubUrl: '', liveUrl: '' };
+      }
+    }
+    if (cur) entries.push(cur);
+    return entries
+      .filter(p => p.title)
+      .slice(0, 6)
+      .map(p => ({ title: p.title, description: p.desc.join(' ').replace(/\s+/g, ' ').trim().slice(0, 280), githubUrl: p.githubUrl, liveUrl: p.liveUrl }));
+  }
+
+  // Expose the parser for the console / debugging (read-only helper)
+  window.IP_PARSE = { parseResumeText };
 
   // Raw text + parsed fields of the last uploaded resume — fuels the real
   // ATS analysis (js/ats.js) once the portfolio is generated.
@@ -493,7 +652,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       if (!valid) return;
 
-      const profile = { name, title, email, phone, location, about, skills };
+      // Identity fields come from the form (user-corrected); deep sections
+      // (experience, education, projects, certifications, links) come from
+      // the parsed resume so the portfolio reflects the full document.
+      const deep = (lastResumeAnalysis && lastResumeAnalysis.parsed) || {};
+      const profile = {
+        name, title, email, phone, location, about, skills,
+        github: deep.github || '',
+        linkedin: deep.linkedin || '',
+        website: deep.website || '',
+        experiences: deep.experiences || [],
+        educations: deep.educations || [],
+        projects: deep.projects || [],
+        certifications: deep.certifications || [],
+      };
       populatePortfolio(profile);
       detailsCard.classList.add('hidden');
       startProcessing(profile);
@@ -1116,7 +1288,10 @@ document.addEventListener('DOMContentLoaded', () => {
      Template = layout/style identity; Color = one of 10 accents.
      Every pick persists and hot-reloads the live preview frame.
      ============================================================ */
-  const tcStyleNames = { midnight: 'Midnight', paper: 'Paper', soft: 'Soft', terminal: 'Terminal' };
+  const tcStyleNames = {
+    midnight: 'Midnight', paper: 'Paper', soft: 'Soft', terminal: 'Terminal',
+    nebula: 'Nebula', swiss: 'Swiss', brutal: 'Brutal', luxe: 'Luxe',
+  };
   const tcStylesEl = document.getElementById('tcStyles');
   const tcColorsEl = document.getElementById('tcColors');
 

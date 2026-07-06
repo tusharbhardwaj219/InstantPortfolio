@@ -97,9 +97,15 @@
       email: profile.email || '',
       phone: profile.phone || '',
       location: profile.location || '',
-      github: '', linkedin: '', website: '',
+      github: profile.github || '',
+      linkedin: profile.linkedin || '',
+      website: profile.website || '',
       skills: profile.skills || [],
-      projects: [], experiences: [], educations: [], certifications: [], socialLinks: [],
+      projects: profile.projects || [],
+      experiences: profile.experiences || [],
+      educations: profile.educations || [],
+      certifications: profile.certifications || [],
+      socialLinks: [],
     };
   }
 
@@ -152,11 +158,37 @@
       .join(' ');
     $('navMark').textContent = model.name;
     $('footName').textContent = `© ${new Date().getFullYear()} ${model.name}`;
-    $('heroWatermark').textContent = words
-      .map((w) => w[0])
-      .join('')
-      .slice(0, 2)
-      .toUpperCase();
+    const initials = words.map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+    $('heroWatermark').textContent = initials;
+    const avatar = $('heroAvatar');
+    if (avatar) avatar.textContent = initials;
+  }
+
+  /** Stat chips derived from the actual resume data (only shown when real). */
+  function renderStats(model) {
+    const el = $('heroStats');
+    if (!el) return;
+    const chips = [];
+
+    const startYears = (model.experiences || [])
+      .map((e) => parseInt((String(e.startDate || '').match(/(19|20)\d{2}/) || [])[0], 10))
+      .filter(Boolean);
+    if (startYears.length) {
+      const span = new Date().getFullYear() - Math.min(...startYears);
+      if (span >= 1 && span < 40) chips.push(`${span}+ ${span === 1 ? 'year' : 'years'} experience`);
+    }
+
+    const realProjects = (model.projects || []).filter((p) => !p.suggested && (p.title || p.description));
+    if (realProjects.length) chips.push(`${realProjects.length} project${realProjects.length > 1 ? 's' : ''}`);
+
+    if ((model.skills || []).length >= 4) chips.push(`${model.skills.length} skills`);
+
+    const certs = (model.certifications || []).filter((c) => c.name);
+    if (certs.length) chips.push(`${certs.length} certification${certs.length > 1 ? 's' : ''}`);
+
+    if (!chips.length) return;
+    el.innerHTML = chips.map((c) => `<span class="hero-stat">${esc(c)}</span>`).join('');
+    el.classList.remove('hidden');
   }
 
   function renderHero(model) {
@@ -465,6 +497,7 @@
 
     renderSeo(model);
     renderHero(model);
+    renderStats(model);
     renderMarquee(model);
     renderAbout(model);
     renderWork(model);
